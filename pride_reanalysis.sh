@@ -40,6 +40,16 @@ echo
 echo "Creating Output folder"
 echo
 
+function check_if_file_exists {
+  if [ -s $OUTPUT_FOLDER/$SAMPLE ]; then 
+    echo "*** File Created: $1"
+  else
+    echo "*** ERROR: File Does Not exist: $1"
+    exit 1
+  fi
+}
+
+mkdir $OUTPUT_FOLDER/$SAMPLE
 # #######################################################
 # ####					Search GUI					 ####
 # #######################################################
