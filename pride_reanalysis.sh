@@ -79,65 +79,59 @@ function print_time {
 START=$(date +%s)
 
 
-# #######################################################
-# ####					Search GUI					 ####
-# #######################################################
+#######################################################
+####					Search GUI					 ####
+#######################################################
 
 
-# cd /data/home/bt12048/pride_reanalysis/SearchGUI.5/
+cd /data/home/bt12048/pride_reanalysis/SearchGUI.5/
 
-# if [ "$ANALYSIS" -eq 1 ]; then
-# 	echo
-# 	echo "Starting SearchGUI for MS-GF+ only..."
-# 	echo
-# 	bash loading.sh
-# 	java -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER/$SAMPLE -id_params $PARAMETERS -xtandem 0 -myrimatch 0 -ms_amanda 0 -msgf 1 -omssa 0 -comet 0 -tide 0 -andromeda 0 -threads $THREADS
-# fi
+if [ "$ANALYSIS" -eq 1 ]; then
+	echo
+	echo "Starting SearchGUI for MS-GF+ only..."
+	echo
+	bash loading.sh
+	java -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER/$SAMPLE -id_params $PARAMETERS -xtandem 0 -myrimatch 0 -ms_amanda 0 -msgf 1 -omssa 0 -comet 0 -tide 0 -andromeda 0 -threads $THREADS
+fi
 
-# if [ "$ANALYSIS" -eq 2 ]; then
-# 	echo
-# 	echo "Starting SearchGUI for multiple Search Engines..."
-# 	echo
-# 	echo "X! Tandem"
-# 	echo "MyriMatch"
-# 	echo "MS Amanda"
-# 	echo "MS-GF+"
-# 	echo "OMSSA"
-# 	echo "Comet"
-# 	# echo "Andromeda"
-# 	echo
-# 	bash loading.sh
-# 	echo
-# 	java -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER -id_params $PARAMETERS -xtandem 1 -myrimatch 1 -ms_amanda 0 -msgf 1 -omssa 1 -comet 1 -tide 0 -andromeda 0 -threads $THREADS
-# fi
+if [ "$ANALYSIS" -eq 2 ]; then
+	echo
+	echo "Starting SearchGUI for multiple Search Engines..."
+	echo
+	echo "X! Tandem"
+	echo "MyriMatch"
+	echo "MS Amanda"
+	echo "MS-GF+"
+	echo "OMSSA"
+	echo "Comet"
+	# echo "Andromeda"
+	echo
+	bash loading.sh
+	echo
+	java -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER -id_params $PARAMETERS -xtandem 1 -myrimatch 1 -ms_amanda 0 -msgf 1 -omssa 1 -comet 1 -tide 0 -andromeda 0 -threads $THREADS
+fi
 
-# ## check if output was produced
-# if [ ! -f /data/home/bt12048/pride_reanalysis/outputs/searchgui_out.zip ]; 
-# 	then echo "Error: SearchGUI did not finish running properly"
-# else
-# 	echo
-# 	echo "SearchGUI completed successfully"
-# 	echo
-# 	echo "Starting PeptideShaker..."
-# 	echo
-# 	bash loading.sh
-# 	echo
-# fi
+## check if output was produced
+if [ ! -f /data/home/bt12048/pride_reanalysis/outputs/searchgui_out.zip ]; 
+	then echo "Error: SearchGUI did not finish running properly"
+else
+	echo
+	echo "SearchGUI completed successfully"
+	echo
+	echo "Starting PeptideShaker..."
+	echo
+	bash loading.sh
+	echo
+fi
 
 
-# #######################################################
-# #### 				Peptide Shaker 				   ####
-# #######################################################
+#######################################################
+#### 				Peptide Shaker 				   ####
+#######################################################
 
-# cd /data/home/bt12048/pride_reanalysis/PeptideShaker.6/
+cd /data/home/bt12048/pride_reanalysis/PeptideShaker.6/
 
-#  java -cp ./PeptideShaker-1.14.6/PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.PeptideShakerCLI 
-#  -experiment $EXPERIMENT -sample $SAMPLE -replicate $REPLICATE
-#  -identification_files $OUTPUT_FOLDER 
-#  -spectrum_files $OUTPUT_FOLDER 
-#  -id_params $PARAMETERS 
-#  -out $OUTPUT_FOLDER/$SAMPLE.cpsx
-#  -threads $THREADS
+java -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.PeptideShakerCLI -experiment $EXPERIMENT -sample $SAMPLE -replicate $REPLICATE -identification_files $OUTPUT_FOLDER -spectrum_files $INPUT_FILE -id_params $PARAMETERS -out $OUTPUT_FOLDER/$SAMPLE.cpsx -threads $THREADS
 
 
 ## Print Analysis time
@@ -151,38 +145,5 @@ mail -s "Apocrita run completed" nazrath.nawaz@yahoo.de <<< "File: $INPUT_FILE"
 
 
 #######################################################
-
-#### Redundant Code
-
-# #### Search GUI ####
-
-#  java -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI 
-#  -spectrum_files ./mgf/before_last_batch/NHDF_ne_stim_1a_4.mgf -
-#  output_folder ./output/before_last_batch -id_params inflammation.par 
-#  -xtandem 1 -myrimatch 1 -ms_amanda 0 -msgf 1 -omssa 1 -comet 1 -andromeda 0 
-#  -threads 76
-
-# #### Peptide Shaker ####
-
-#  java -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.PeptideShakerCLI 
-#  -experiment inflammation -sample before_last_batch -replicate 1 
-#  -identification_files "/data/home/bt12048/search_gui/SearchGUI-3.2 2.5/output/before_last_batch/" 
-#  -spectrum_files "/data/home/bt12048/search_gui/SearchGUI-3.2 2.5/mgf/before_last_batch" 
-#  -id_params "/data/home/bt12048/search_gui/SearchGUI-3.2 2.5/inflammation.par" 
-#  -out "/data/home/bt12048/search_gui/SearchGUI-3.2 2.5/output/results.cpsx"
-#  -threads 74
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
