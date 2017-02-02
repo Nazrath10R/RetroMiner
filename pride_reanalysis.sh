@@ -51,6 +51,21 @@ THREADS=36
 # 	echo
 # 	java -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER -id_params $PARAMETERS -xtandem 1 -myrimatch 1 -ms_amanda 0 -msgf 1 -omssa 1 -comet 1 -tide 0 -andromeda 0 -threads $THREADS
 # fi
+
+# ## check if output was produced
+# if [ ! -f /data/home/bt12048/pride_reanalysis/outputs/searchgui_out.zip ]; 
+# 	then echo "Error: SearchGUI did not finish running properly"
+# else
+# 	echo
+# 	echo "SearchGUI completed successfully"
+# 	echo
+# 	echo "Starting PeptideShaker..."
+# 	echo
+# 	bash loading.sh
+# 	echo
+# fi
+
+
 # #######################################################
 # #### 				Peptide Shaker 				   ####
 # #######################################################
