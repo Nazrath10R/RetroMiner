@@ -79,3 +79,51 @@ THREADS=36
 #  -id_params $PARAMETERS 
 #  -out $OUTPUT_FOLDER/$SAMPLE.cpsx
 #  -threads $THREADS
+
+
+## Print Analysis time
+echo
+echo "Total Run-time for this Re-Analysis was:"
+print_time $START
+echo
+
+
+
+
+
+#######################################################
+
+#### Redundant Code
+
+# #### Search GUI ####
+
+#  java -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI 
+#  -spectrum_files ./mgf/before_last_batch/NHDF_ne_stim_1a_4.mgf -
+#  output_folder ./output/before_last_batch -id_params inflammation.par 
+#  -xtandem 1 -myrimatch 1 -ms_amanda 0 -msgf 1 -omssa 1 -comet 1 -andromeda 0 
+#  -threads 76
+
+# #### Peptide Shaker ####
+
+#  java -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.PeptideShakerCLI 
+#  -experiment inflammation -sample before_last_batch -replicate 1 
+#  -identification_files "/data/home/bt12048/search_gui/SearchGUI-3.2 2.5/output/before_last_batch/" 
+#  -spectrum_files "/data/home/bt12048/search_gui/SearchGUI-3.2 2.5/mgf/before_last_batch" 
+#  -id_params "/data/home/bt12048/search_gui/SearchGUI-3.2 2.5/inflammation.par" 
+#  -out "/data/home/bt12048/search_gui/SearchGUI-3.2 2.5/output/results.cpsx"
+#  -threads 74
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
