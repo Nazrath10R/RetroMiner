@@ -15,7 +15,9 @@ the LINE-1 encoded retroelement proteins: ORF1p (Q9UN81), ORF2p (O00370) and ORF
 
 
 ## SearchGUI
- link
+
+http://compomics.github.io/projects/searchgui.html
 
 ## PeptideShaker
-link
+
+http://compomics.github.io/projects/peptide-shaker.html
