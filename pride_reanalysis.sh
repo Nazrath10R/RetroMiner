@@ -146,8 +146,8 @@ echo "Total Run-time for this Re-Analysis was:"
 print_time $START
 echo
 
-
-
+## e-mail notification
+mail -s "Apocrita run completed" nazrath.nawaz@yahoo.de <<< "File: $INPUT_FILE"
 
 
 #######################################################
