@@ -23,7 +23,32 @@ THREADS=36
 # #######################################################
 # ####					Search GUI					 ####
 # #######################################################
+
+
+# cd /data/home/bt12048/pride_reanalysis/SearchGUI.5/
+
+# if [ "$ANALYSIS" -eq 1 ]; then
+# 	echo
+# 	echo "Starting SearchGUI for MS-GF+ only..."
+# 	echo
+# 	bash loading.sh
 # 	java -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER/$SAMPLE -id_params $PARAMETERS -xtandem 0 -myrimatch 0 -ms_amanda 0 -msgf 1 -omssa 0 -comet 0 -tide 0 -andromeda 0 -threads $THREADS
+# fi
+
+# if [ "$ANALYSIS" -eq 2 ]; then
+# 	echo
+# 	echo "Starting SearchGUI for multiple Search Engines..."
+# 	echo
+# 	echo "X! Tandem"
+# 	echo "MyriMatch"
+# 	echo "MS Amanda"
+# 	echo "MS-GF+"
+# 	echo "OMSSA"
+# 	echo "Comet"
+# 	# echo "Andromeda"
+# 	echo
+# 	bash loading.sh
+# 	echo
 # 	java -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER -id_params $PARAMETERS -xtandem 1 -myrimatch 1 -ms_amanda 0 -msgf 1 -omssa 1 -comet 1 -tide 0 -andromeda 0 -threads $THREADS
 # fi
 # #######################################################
