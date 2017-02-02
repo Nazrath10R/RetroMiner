@@ -14,3 +14,16 @@
 # 	java -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER/$SAMPLE -id_params $PARAMETERS -xtandem 0 -myrimatch 0 -ms_amanda 0 -msgf 1 -omssa 0 -comet 0 -tide 0 -andromeda 0 -threads $THREADS
 # 	java -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER -id_params $PARAMETERS -xtandem 1 -myrimatch 1 -ms_amanda 0 -msgf 1 -omssa 1 -comet 1 -tide 0 -andromeda 0 -threads $THREADS
 # fi
+# #######################################################
+# #### 				Peptide Shaker 				   ####
+# #######################################################
+
+# cd /data/home/bt12048/pride_reanalysis/PeptideShaker.6/
+
+#  java -cp ./PeptideShaker-1.14.6/PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.PeptideShakerCLI 
+#  -experiment $EXPERIMENT -sample $SAMPLE -replicate $REPLICATE
+#  -identification_files $OUTPUT_FOLDER 
+#  -spectrum_files $OUTPUT_FOLDER 
+#  -id_params $PARAMETERS 
+#  -out $OUTPUT_FOLDER/$SAMPLE.cpsx
+#  -threads $THREADS
