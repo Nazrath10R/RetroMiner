@@ -20,6 +20,26 @@ ANALYSIS=2
 REPLICATE=1
 OUTPUT_FOLDER="/data/home/bt12048/pride_reanalysis/outputs"
 THREADS=36
+
+############################################################
+
+echo
+echo "Starting Re-Analysis Pipeline"
+echo
+echo "Input data file:"
+echo "$INPUT_FILE"
+echo
+echo "Parameter file:"
+echo "PARAMETERS"
+echo
+echo "Sample Name:"
+echo "$SAMPLE"
+echo
+echo "Replicates: $REPLICATE"
+echo
+echo "Creating Output folder"
+echo
+
 # #######################################################
 # ####					Search GUI					 ####
 # #######################################################
