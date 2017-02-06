@@ -54,8 +54,13 @@ grep -o "PXD[0-9][0-9][0-9][0-9][0-9][0-9]" list
 echo
 grep -o "PXD[0-9][0-9][0-9][0-9][0-9][0-9]" list > list2.txt
 
+
+## Identify Assay for Project 1
 echo
-echo "Starting Re-Analysis Pipeline"
+echo "Retrieving protein identifications for project 1 and protein: Q9UN81"
+echo 
+wget http://www.ebi.ac.uk:80/pride/ws/archive/protein/list/project/PXD003411/protein/Q9UN81
+echo
 echo
 echo "Input data file:"
 echo "$INPUT_FILE"
