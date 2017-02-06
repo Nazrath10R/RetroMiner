@@ -61,6 +61,18 @@ echo "Retrieving protein identifications for project 1 and protein: Q9UN81"
 echo 
 wget http://www.ebi.ac.uk:80/pride/ws/archive/protein/list/project/PXD003411/protein/Q9UN81
 echo
+
+## Retrieve Array Acession number
+grep -o "assayAccession.:.[0-9]*" Q9UN81 > array_accession.txt
+sed -i -e 's/assayAccession.:.//g' array_accession.txt
+echo
+
+## Identify Array data files
+echo "Project 1 and Array 1"
+echo
+wget http://www.ebi.ac.uk:80/pride/ws/archive/file/list/project/PXD003411
+echo
+
 echo
 echo "Input data file:"
 echo "$INPUT_FILE"
