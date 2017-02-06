@@ -4,14 +4,12 @@
 #######    Re-Analysis Pipeline for PRIDE datasets    ########
 ##############################################################
 
-## PRIDE - https://www.ebi.ac.uk/pride/archive/
-## PRIDE API - https://www.ebi.ac.uk/pride/ws/archive/ 
-## Proteins of Interest: Q9UN81 (ORF1p), O00370 (ORF2p), Q9UN82 (ORF0)
 ## Human proteome contains fasta file with all three ORF proteins
 
 
 ######## Variables ########
 
+PROTEIN="Q9UN81"
 INPUT_FILE='/data/home/bt12048/pride_reanalysis/inputs/HUVEC_cyt_con_1a_2.mgf'
 PARAMETERS='/data/home/bt12048/pride_reanalysis/parameters/inflammation.par'
 EXPERIMENT="inflammation" 
@@ -19,9 +17,29 @@ SAMPLE="inflammation_dataset_1"
 ANALYSIS=2
 REPLICATE=1
 OUTPUT_FOLDER="/data/home/bt12048/pride_reanalysis/outputs"
-THREADS=36
+THREADS=76
 
-############################################################
+
+#######################################################
+####					PRIDE API				   ####
+#######################################################
+
+## PRIDE - https://www.ebi.ac.uk/pride/archive/
+## PRIDE API - https://www.ebi.ac.uk/pride/ws/archive/ 
+##### Proteins of Interest: Q9UN81 (ORF1p), O00370 (ORF2p), Q9UN82 (ORF0)
+## Example dataset PXD003411
+
+
+#### Search PRIDE datasets for protein of interest ####
+
+## Find Projects matching Protein of Interest
+echo
+echo "Starting Re-Analysis Pipeline..."
+echo
+echo "Fetching Data from PRIDE through RESTful API"
+echo
+echo "Retrieving all Projects containing Protein: $PROTEIN"
+echo
 
 echo
 echo "Starting Re-Analysis Pipeline"
