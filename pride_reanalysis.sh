@@ -73,6 +73,23 @@ echo
 wget http://www.ebi.ac.uk:80/pride/ws/archive/file/list/project/PXD003411
 echo
 
+## Download Data files for Array 60796
+echo "Download Data files for Array 1"
+wget https://www.ebi.ac.uk:443/pride/ws/archive/file/list/assay/60796
+echo
+grep -o "mgf...downloadLink...ftp.*mgf" 60796 > downloadLink.sh
+sed -i -e 's/mgf","downloadLink":"/wget /g' downloadLink.sh
+sh downloadLink.sh
+
+## Search PRIDE datasets for project of interest
+## Search PRIDE datasets for biomarker of interest
+
+echo "Retrieving Data from PRIDE successfull"
+echo
+echo "Starting Re-Analysis tools"
+
+############################################################
+
 echo
 echo "Input data file:"
 echo "$INPUT_FILE"
