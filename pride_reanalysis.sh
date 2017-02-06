@@ -145,7 +145,7 @@ START=$(date +%s)
 
 
 #######################################################
-####					Search GUI					 ####
+####					Search GUI				   ####
 #######################################################
 
 
@@ -198,7 +198,6 @@ cd /data/home/bt12048/pride_reanalysis/PeptideShaker.6/
 
 java -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.PeptideShakerCLI -experiment $EXPERIMENT -sample $SAMPLE -replicate $REPLICATE -identification_files $OUTPUT_FOLDER -spectrum_files $INPUT_FILE -id_params $PARAMETERS -out $OUTPUT_FOLDER/$SAMPLE.cpsx -threads $THREADS
 
-
 ## Print Analysis time
 echo
 echo "Total Run-time for this Re-Analysis was:"
@@ -208,7 +207,12 @@ echo
 ## e-mail notification
 mail -s "Apocrita run completed" nazrath.nawaz@yahoo.de <<< "File: $INPUT_FILE"
 
-
 #######################################################
 
+# ## convert PeptideShaker results to .mzidML file
+# java -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.MzidCLI 
+# -in /data/home/bt12048/pride_reanalysis/outputs/result.cpsx -output_file results 
+# -contact_first_name "Nazrath" -contact_last_name "Nawaz" -contact_email "nazrath.nawaz@yahoo.de" 
+# -contact_address "Fogg Building, London" -organization_name "QMUL" -organization_email "m.n.mohamednawaz@se12.qmul.ac.uk" -organization_address "Mile End Road, London" 
+# -spectrum_files /data/home/bt12048/pride_reanalysis/inputs/
 
