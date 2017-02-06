@@ -41,6 +41,19 @@ echo
 echo "Retrieving all Projects containing Protein: $PROTEIN"
 echo
 
+
+## protein Q9UN81
+##
+wget https://www.ebi.ac.uk:443/pride/ws/archive/project/list?query=Q9UN81&order=desc
+
+echo "Identifiying Projects..."
+echo
+echo "Project Accession numbers:"
+echo
+grep -o "PXD[0-9][0-9][0-9][0-9][0-9][0-9]" list
+echo
+grep -o "PXD[0-9][0-9][0-9][0-9][0-9][0-9]" list > list2.txt
+
 echo
 echo "Starting Re-Analysis Pipeline"
 echo
