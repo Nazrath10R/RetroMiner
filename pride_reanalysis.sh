@@ -268,3 +268,12 @@ mail -s "Apocrita run completed" nazrath.nawaz@yahoo.de <<< "File: $INPUT_FILE"
 # # -contact_address "Fogg Building, London" -organization_name "QMUL" -organization_email "m.n.mohamednawaz@se12.qmul.ac.uk" -organization_address "Mile End Road, London" 
 # # -spectrum_files /data/home/bt12048/pride_reanalysis/inputs/
 
+# #######################################################
+
+# ## To Do:
+# # come up with a way to filter results for protein of interest
+# # convert output to mzid
+# # use ProViewer to vizualise
+# # automate parameters
+# # Final results table
+
