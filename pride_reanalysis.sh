@@ -22,6 +22,16 @@ OUTPUT_FOLDER="/data/home/bt12048/pride_reanalysis/outputs/test"
 THREADS=70
 
 
+#######################################################
+####                PRIDE Reshake                  ####
+#######################################################
+
+# PRIDE Reshake works for mzIdentML or PRIDE XML files
+
+## Pride Reshake
+# requires ssh -X for interactivity
+# java -jar PeptideShaker-1.14.6.jar -pxAccession "PXD003411"
+
 
 #######################################################
 ####					PRIDE API				   ####
