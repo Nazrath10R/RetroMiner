@@ -72,7 +72,7 @@ sleep 6
 
 ## protein Q9UN81
 ## Search all Projects containing protein: Q9UN81
-cd $OUTPUT_FOLDER/$SAMPLE
+cd /data/home/bt12048/pride_reanalysis/inputs
 echo
 echo "Identifiying Projects..."
 echo
@@ -92,9 +92,9 @@ sleep 8
 
 ## Identify Array for Project 1
 echo
-echo "Retrieving protein identification array for project 1 and protein: Q9UN81"
+echo "Retrieving protein identification assay for project 1 and protein: Q9UN81"
 echo 
-wget http://www.ebi.ac.uk:80/pride/ws/archive/protein/list/project/PXD003411/protein/Q9UN81
+wget http://www.ebi.ac.uk:80/pride/ws/archive/protein/list/project/PXD003406/protein/Q9UN81
 echo
 echo
 echo
@@ -103,12 +103,12 @@ sleep 8
 ## Retrieve Array Acession number
 echo "Identifying Arrays..."
 echo
-grep -o "assayAccession.:.[0-9]*" Q9UN81 > array_accession.txt
-sed -i -e 's/assayAccession.:.//g' array_accession.txt
+grep -o "assayAccession.:.[0-9]*" Q9UN81 > assay_accession.txt
+sed -i -e 's/assayAccession.:.//g' assay_accession.txt
 echo
 echo "Arrays identified"
 echo
-echo Array Accession number: "$(cat array_accession.txt)"
+echo Array Accession number: "$(cat assay_accession.txt)"
 echo
 echo
 sleep 8
@@ -121,16 +121,17 @@ sleep 8
 # wget http://www.ebi.ac.uk:80/pride/ws/archive/file/list/project/PXD003411
 # echo
 
-## Download Data files for Array 60796
+## Download Data files for Array 60693
 echo
 echo "Starting to Download Data files for Array 1"
 echo
 echo
-wget https://www.ebi.ac.uk:443/pride/ws/archive/file/list/assay/60796 
+wget https://www.ebi.ac.uk:443/pride/ws/archive/file/list/assay/60693
+
 echo
 echo
 echo
-grep -o "mgf...downloadLink...ftp.*mgf" 60796 > downloadLink.sh
+grep -o "mgf...downloadLink...ftp.*mgf" 60693 > downloadLink.sh
 sed -i -e 's/mgf","downloadLink":"/wget /g' downloadLink.sh
 sh downloadLink.sh
 echo
@@ -138,15 +139,15 @@ echo
 echo "Download successful"
 echo
 
-## remove unnecessary files
-# echo "removing temp files..."
-# rm Q9UN81
-# # rm PXD003411
-# rm 60796
-# rm list?query=Q9UN81
-# rm array_accession.txt
-# rm downloadLink.sh
-# rm pxd_list.txt
+# remove unnecessary files
+echo "removing temp files..."
+rm Q9UN81
+# rm PXD003411
+rm 60693
+rm list?query=Q9UN81
+rm assay_accession.txt
+rm downloadLink.sh
+rm pxd_list.txt
 
 echo
 echo "Files Downloaded:"
@@ -156,8 +157,8 @@ echo
 sleep 8
 
 
-# ## Search PRIDE datasets for project of interest
-# ## Search PRIDE datasets for biomarker of interest
+## Search PRIDE datasets for project of interest
+## Search PRIDE datasets for biomarker of interest
 echo
 echo
 echo "Retrieving Data from PRIDE successful"
@@ -179,7 +180,6 @@ echo "$SAMPLE"
 echo
 echo "Replicates: $REPLICATE"
 echo
-
 
 ############################################################
 
