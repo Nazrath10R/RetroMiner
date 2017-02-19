@@ -8,22 +8,16 @@
 # Seperate analysis for projects that contain reshakable files vs
 # non reshakable files
 
-
 ######## Variables ########
 
 PROTEIN="Q9UN81"
-INPUT_FILE='/data/home/bt12048/pride_reanalysis/inputs/HUVEC_cyt_con_1a_2.mgf'
 PXD="PXD003406"
 INPUT_FILE='/data/home/bt12048/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf'
 PARAMETERS='/data/home/bt12048/pride_reanalysis/parameters/inflammation.par'
-EXPERIMENT="inflammation" 
-SAMPLE="inflammation_dataset_1" 
 EXPERIMENT="inflammation"
 SAMPLE="inflammation_dataset_cyt_con_2a" 
 ANALYSIS=2
 REPLICATE=1
-OUTPUT_FOLDER="/data/home/bt12048/pride_reanalysis/outputs"
-THREADS=76
 OUTPUT_FOLDER="/data/home/bt12048/pride_reanalysis/outputs/test"
 THREADS=70
 
