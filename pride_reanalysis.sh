@@ -238,7 +238,46 @@ if [ "$ANALYSIS" -eq 2 ]; then
 	echo
 	bash loading.sh
 	echo
-	java -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER -id_params $PARAMETERS -xtandem 1 -myrimatch 1 -ms_amanda 0 -msgf 1 -omssa 1 -comet 1 -tide 0 -andromeda 0 -threads $THREADS
+
+	## SearchGUI Parallelisation 
+
+	cd /data/home/bt12048/pride_reanalysis/SearchGUI.5/
+
+# tmux new -s msgf 'sh pride_reanalysis_4.sh'
+
+# tmux new-session -d -s msgf
+# tmux send-keys 'sh pride_reanalysis_4.sh' C-m
+# tmux detach -s msgf
+
+
+# tmux send -t msgf ls ENTER
+
+	tmux new-session -d -s msgf
+	tmux send-keys 'java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files '$INPUT_FILE' -output_folder '$OUTPUT_FOLDER' -id_params '$PARAMETERS' -msgf 1 -threads 36' C-m
+	tmux detach -s msgf
+
+	# java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER -id_params $PARAMETERS -omssa 1 -threads $THREADS
+
+	tmux new-session -d -s xtandem
+	tmux send-keys 'java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files '$INPUT_FILE' -output_folder '$OUTPUT_FOLDER' -id_params '$PARAMETERS' -xtandem 1 -threads 19' C-m
+	tmux detach -s xtandem
+
+	# java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER -id_params $PARAMETERS -xtandem 1 -threads 19
+
+	tmux new-session -d -s myrimatch
+	tmux send-keys 'java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files '$INPUT_FILE' -output_folder '$OUTPUT_FOLDER' -id_params '$PARAMETERS' -myrimatch 1 -threads '$THREADS'' C-m
+	tmux detach
+
+	tmux new-session -d -s omssa
+	tmux send-keys 'java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files '$INPUT_FILE' -output_folder '$OUTPUT_FOLDER' -id_params '$PARAMETERS' -omssa 1 -threads 25' C-m
+	tmux detach
+
+	tmux new-session -d -s comet
+	tmux send-keys 'java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files '$INPUT_FILE' -output_folder '$OUTPUT_FOLDER' -id_params '$PARAMETERS' -comet 1 -threads 25' C-m
+	tmux detach
+
+ # 	# -tide 0 -andromeda 0
+
 fi
 
 ## check if output was produced
