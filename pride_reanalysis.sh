@@ -326,6 +326,21 @@ echo
 echo "conversion to mzIdentML successful"
 echo
 
+# #######################################################
+# ####              Data filtering                   ####
+# #######################################################
+
+# #### PeptideShaker Report
+tmux new-session -d -s report
+tmux send-keys 'java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.ReportCLI -in /data/home/bt12048/pride_reanalysis/outputs/inflammation_dataset_cyt_con_2a.cpsx -out_reports /data/home/bt12048/pride_reanalysis/outputs/ -reports 9'
+tmux detach
+
+# cannot be parallelised on the same file
+java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.ReportCLI -in /data/home/bt12048/pride_reanalysis/outputs/inflammation_dataset_cyt_con_2a.cpsx -out_reports /data/home/bt12048/pride_reanalysis/outputs/ -reports 1
+
+
+grep $PROTEIN inflammation_inflammation_dataset_cyt_con_2a_1_Extended_PSM_Report.txt
+
 ## Print Analysis time
 echo
 echo "Total Run-time for this Re-Analysis was:"
