@@ -14,6 +14,12 @@ The main purpose of the pipeline is to re-analyse PRIDE datasets identifying
 the LINE-1 encoded retroelement proteins: ORF1p (Q9UN81), ORF2p (O00370) and ORF0
 
 
+- PRIDE - https://www.ebi.ac.uk/pride/archive/
+- PRIDE API - https://www.ebi.ac.uk/pride/ws/archive/ 
+- Proteins of Interest: Q9UN81 (ORF1p), O00370 (ORF2p), Q9UN82 (ORF0)
+- Example dataset PXD003406
+
+
 ## SearchGUI
 
 http://compomics.github.io/projects/searchgui.html
@@ -21,11 +27,5 @@ http://compomics.github.io/projects/searchgui.html
 ## PeptideShaker
 
 http://compomics.github.io/projects/peptide-shaker.html
-
-
-- PRIDE - https://www.ebi.ac.uk/pride/archive/
-- PRIDE API - https://www.ebi.ac.uk/pride/ws/archive/ 
-- Proteins of Interest: Q9UN81 (ORF1p), O00370 (ORF2p), Q9UN82 (ORF0)
-- Example dataset PXD003406
 
 
