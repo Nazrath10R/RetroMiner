@@ -5,12 +5,16 @@
 ##############################################################
 
 #============================================================#
-# sh variables.sh "Q9UN81" "PXD003406" '/data/home/bt12048/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf' '/data/home/bt12048/pride_reanalysis/parameters/inflammation.par' "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/bt12048/pride_reanalysis/outputs/test" 70
+# sh pride_reanalysis.sh "Q9UN81" "PXD003406" '/data/home/bt12048/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf' '/data/home/bt12048/pride_reanalysis/parameters/inflammation.par' "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/bt12048/pride_reanalysis/outputs/test" 70
 #============================================================#
 
-######## Variables ########
 
-## Hard-coded
+#------------------------------------------------------------#
+#                        Variables                           #
+#------------------------------------------------------------#
+
+#### Hard-coded Arguments ####
+
 # PROTEIN="Q9UN81"
 # PXD="PXD003406"
 # INPUT_FILE='/data/home/bt12048/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf'
@@ -23,7 +27,8 @@
 # THREADS=70
 
 
-## Command Line Arguments
+#### Command Line Arguments ####
+
 PROTEIN=$1
 PXD=$2
 INPUT_FILE=$3
@@ -58,8 +63,23 @@ echo
 echo THREADS: $THREADS
 echo
 
-# sh test.sh "Q9UN81" "PXD003406" '/data/home/bt12048/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf' '/data/home/bt12048/pride_reanalysis/parameters/inflammation.par' "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/bt12048/pride_reanalysis/outputs/test" 70
 
+function check_if_file_exists {
+  if [ -s $OUTPUT_FOLDER/$SAMPLE ]; then 
+    echo "*** File Created: $1"
+  else
+    echo "*** ERROR: File Does Not exist: $1"
+    exit 1
+  fi
+}
+
+echo
+echo "Starting Re-Analysis Pipeline..."
+echo
+echo "Creating Output folder"
+echo
+mkdir $OUTPUT_FOLDER/$SAMPLE
+echo
 
 ############################################################
 
@@ -90,12 +110,14 @@ START=$(date +%s)
 
 ############################################################
 
+# sh test.sh "Q9UN81" "PXD003406" '/data/home/bt12048/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf' '/data/home/bt12048/pride_reanalysis/parameters/inflammation.par' "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/bt12048/pride_reanalysis/outputs/test" 70
 
 #######################################################
 ####                    PRIDE API                  ####
 #######################################################
 
 
+sh API.sh "Q9UN81" "PXD003406" '/data/home/bt12048/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf' '/data/home/bt12048/pride_reanalysis/parameters/inflammation.par' "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/bt12048/pride_reanalysis/outputs/test" 70
 
 
 #######################################################
@@ -109,30 +131,27 @@ START=$(date +%s)
 # java -jar PeptideShaker-1.14.6.jar -pxAccession "PXD003411"
 
 
-
 #######################################################
 ####                  Search GUI                   ####
 #######################################################
 
+# node parallelisation
 
+sh SearchGUI.sh "Q9UN81" "PXD003406" '/data/home/bt12048/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf' '/data/home/bt12048/pride_reanalysis/parameters/inflammation.par' "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/bt12048/pride_reanalysis/outputs/test" 70
 
-
+# need to wait for all outputs to be produced before starting PeptideShaker
 
 #######################################################
 ####              Peptide Shaker                   ####
 #######################################################
 
-
-
-
+sh PeptideShaker.sh "Q9UN81" "PXD003406" '/data/home/bt12048/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf' '/data/home/bt12048/pride_reanalysis/parameters/inflammation.par' "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/bt12048/pride_reanalysis/outputs/test" 70
 
 # #######################################################
 # ####              Data filtering                   ####
 # #######################################################
 
-
-
-
+sh Data_Filtering.sh "Q9UN81" "PXD003406" '/data/home/bt12048/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf' '/data/home/bt12048/pride_reanalysis/parameters/inflammation.par' "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/bt12048/pride_reanalysis/outputs/test" 70
 
 # #######################################################
 # ####              Finish Analysis                  ####
