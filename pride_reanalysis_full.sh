@@ -8,6 +8,7 @@
 # Seperate analysis for projects that contain reshakable files vs
 # non reshakable files
 
+ # tmux detach
 ######## Variables ########
 
 PROTEIN="Q9UN81"
@@ -34,7 +35,7 @@ THREADS=70
 
 
 #######################################################
-####					PRIDE API				   ####
+####                    PRIDE API                  ####
 #######################################################
 
 ## PRIDE - https://www.ebi.ac.uk/pride/archive/
@@ -51,7 +52,7 @@ echo "Starting Re-Analysis Pipeline..."
 echo
 echo "Creating Output folder"
 echo
-sleep 3
+# sleep 3
 
 function check_if_file_exists {
   if [ -s $OUTPUT_FOLDER/$SAMPLE ]; then 
@@ -210,7 +211,7 @@ START=$(date +%s)
 
 
 #######################################################
-####					Search GUI				   ####
+####                  Search GUI                   ####
 #######################################################
 
 
@@ -228,10 +229,10 @@ if [ "$ANALYSIS" -eq 2 ]; then
 	echo
 	echo "Starting SearchGUI for multiple Search Engines..."
 	echo
+	echo "MS-GF+"
 	echo "X! Tandem"
 	echo "MyriMatch"
 	echo "MS Amanda"
-	echo "MS-GF+"
 	echo "OMSSA"
 	echo "Comet"
 	# echo "Andromeda"
@@ -280,7 +281,16 @@ if [ "$ANALYSIS" -eq 2 ]; then
 
 fi
 
-## check if output was produced
+# tmux new -s myname
+# tmux a -t myname
+
+# #######################################################
+
+# need to wait for all outputs to be produced before starting PeptideShaker
+
+# #######################################################
+
+# check if output was produced
 if [ ! -f /data/home/bt12048/pride_reanalysis/outputs/searchgui_out.zip ]; 
 	then echo "Error: SearchGUI did not finish running properly"
 else
@@ -295,7 +305,7 @@ fi
 
 
 #######################################################
-#### 				Peptide Shaker 				   ####
+####              Peptide Shaker                   ####
 #######################################################
 
 cd /data/home/bt12048/pride_reanalysis/PeptideShaker.6/
@@ -357,19 +367,11 @@ mail -s "Apocrita run completed" nazrath.nawaz@yahoo.de <<< "File: $INPUT_FILE"
 
 # #######################################################
 
-# # ## convert PeptideShaker results to .mzidML file
-# # java -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.MzidCLI 
-# # -in /data/home/bt12048/pride_reanalysis/outputs/result.cpsx -output_file results 
-# # -contact_first_name "Nazrath" -contact_last_name "Nawaz" -contact_email "nazrath.nawaz@yahoo.de" 
-# # -contact_address "Fogg Building, London" -organization_name "QMUL" -organization_email "m.n.mohamednawaz@se12.qmul.ac.uk" -organization_address "Mile End Road, London" 
-# # -spectrum_files /data/home/bt12048/pride_reanalysis/inputs/
-
-# #######################################################
 
 # ## To Do:
 # # come up with a way to filter results for protein of interest
-# # convert output to mzid
 # # use ProViewer to vizualise
 # # automate parameters
 # # Final results table
+
 
