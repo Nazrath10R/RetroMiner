@@ -23,9 +23,9 @@ http://compomics.github.io/projects/searchgui.html
 http://compomics.github.io/projects/peptide-shaker.html
 
 
-PRIDE - https://www.ebi.ac.uk/pride/archive/
-PRIDE API - https://www.ebi.ac.uk/pride/ws/archive/ 
-Proteins of Interest: Q9UN81 (ORF1p), O00370 (ORF2p), Q9UN82 (ORF0)
-Example dataset PXD003406
+- PRIDE - https://www.ebi.ac.uk/pride/archive/
+- PRIDE API - https://www.ebi.ac.uk/pride/ws/archive/ 
+- Proteins of Interest: Q9UN81 (ORF1p), O00370 (ORF2p), Q9UN82 (ORF0)
+- Example dataset PXD003406
 
 
