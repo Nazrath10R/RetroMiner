@@ -87,9 +87,45 @@ if [ "$ANALYSIS" -eq 2 ]; then
 fi
 
 
+if [ "$ANALYSIS" -eq 3 ]; then
+	echo
+	echo "Using 2 nodes: frontend5 and frontend6"
+	echo
+	echo "Starting SearchGUI for multiple Search Engines..."
+	echo
+	echo "MS-GF+"
+	echo "X! Tandem"
+	echo "MyriMatch"
+	echo "MS Amanda"
+	echo "OMSSA"
+	echo "Comet"
+	# echo "Andromeda"
+	echo
+	bash loading.sh
+	echo
 
+	cd /data/home/btx157/pride_reanalysis/SearchGUI.5/
 
+	echo
+	echo
+	echo "SearchGUI Parallelisation"
+	echo
+	echo
+	echo
 
+	ssh apoc5 'cd /data/home/btx157/pride_reanalysis/scripts/ ;
+	sh SearchGUI_module_4.sh "Q9UN81" "PXD003406" "/data/home/btx157/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf" "/data/home/btx157/pride_reanalysis/parameters/inflammation.par" "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/btx157/pride_reanalysis/outputs/test" 40' & 
+	
+	ssh apoc6 'cd /data/home/btx157/pride_reanalysis/scripts/ ;
+	sh SearchGUI_module_2.sh "Q9UN81" "PXD003406" "/data/home/btx157/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf" "/data/home/btx157/pride_reanalysis/parameters/inflammation.par" "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/btx157/pride_reanalysis/outputs/test" 30' & 
+	
+	echo
+	echo
+	echo
+	echo
+	echo "SearchGUI successfully completed"
+	echo
+	echo
 
 fi
 
