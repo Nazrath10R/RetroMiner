@@ -33,6 +33,8 @@ fi
 
 if [ "$ANALYSIS" -eq 2 ]; then
 	echo
+	echo "Using 3 nodes: sm11, frontend5 and frontend6"
+	echo
 	echo "Starting SearchGUI for multiple Search Engines..."
 	echo
 	echo "MS-GF+"
@@ -48,6 +50,12 @@ if [ "$ANALYSIS" -eq 2 ]; then
 
 	cd /data/home/btx157/pride_reanalysis/SearchGUI.5/
 
+	echo
+	echo
+	echo "SearchGUI Parallelisation"
+	echo
+	echo
+	echo
 
 	ssh apoc5 'cd /data/home/btx157/pride_reanalysis/scripts/ ;
 	sh SearchGUI_module_1.sh "Q9UN81" "PXD003406" "/data/home/btx157/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf" "/data/home/btx157/pride_reanalysis/parameters/inflammation.par" "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/btx157/pride_reanalysis/outputs/test" 40' & 
@@ -58,10 +66,25 @@ if [ "$ANALYSIS" -eq 2 ]; then
 	ssh sm11 'cd /data/home/btx157/pride_reanalysis/scripts/ ;
 	sh SearchGUI_module_3.sh "Q9UN81" "PXD003406" "/data/home/btx157/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf" "/data/home/btx157/pride_reanalysis/parameters/inflammation.par" "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/btx157/pride_reanalysis/outputs/test" 4' & 
 
+	echo
+	echo
+	echo
+	echo
+	echo "SearchGUI successfully completed"
+	echo
+	echo
 
 	## working 
+	# ssh apoc6 'cd /data/home/btx157/pride_reanalysis/scripts/ ;
+	# sh test.sh "Q9UN81" "PXD003406" "/data/home/btx157/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf" "/data/home/btx157/pride_reanalysis/parameters/inflammation.par" "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/btx157/pride_reanalysis/outputs/test" 40 2' & 
+	
+	# ssh apoc5 'cd /data/home/btx157/pride_reanalysis/scripts/ ;
+	# sh test.sh "Q9UN81" "PXD003406" "/data/home/btx157/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf" "/data/home/btx157/pride_reanalysis/parameters/inflammation.par" "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/btx157/pride_reanalysis/outputs/test" 20 2' & 
 
+	# ssh sm11 'cd /data/home/btx157/pride_reanalysis/scripts/ ;
+	# sh test.sh "Q9UN81" "PXD003406" "/data/home/btx157/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf" "/data/home/btx157/pride_reanalysis/parameters/inflammation.par" "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/btx157/pride_reanalysis/outputs/test" 10 2' &
 
+fi
 
 
 
