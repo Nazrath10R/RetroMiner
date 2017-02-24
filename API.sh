@@ -35,7 +35,8 @@ sleep 6
 
 ## protein Q9UN81
 ## Search all Projects containing protein: Q9UN81
-cd /data/home/bt12048/pride_reanalysis/inputs
+cd /data/home/btx157/pride_reanalysis/inputs
+
 echo
 echo "Identifiying Projects..."
 echo

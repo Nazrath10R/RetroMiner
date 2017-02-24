@@ -5,7 +5,7 @@
 ##############################################################
 
 #============================================================#
-# sh pride_reanalysis.sh "Q9UN81" "PXD003406" '/data/home/bt12048/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf' '/data/home/bt12048/pride_reanalysis/parameters/inflammation.par' "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/bt12048/pride_reanalysis/outputs/test" 70
+# sh pride_reanalysis.sh "Q9UN81" "PXD003406" '/data/home/btx157/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf' '/data/home/btx157/pride_reanalysis/parameters/inflammation.par' "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/btx157/pride_reanalysis/outputs/test" 70
 #============================================================#
 
 
@@ -17,13 +17,13 @@
 
 # PROTEIN="Q9UN81"
 # PXD="PXD003406"
-# INPUT_FILE='/data/home/bt12048/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf'
-# PARAMETERS='/data/home/bt12048/pride_reanalysis/parameters/inflammation.par'
+# INPUT_FILE='/data/home/btx157/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf'
+# PARAMETERS='/data/home/btx157/pride_reanalysis/parameters/inflammation.par'
 # EXPERIMENT="inflammation"
 # SAMPLE="inflammation_dataset_cyt_con_2a" 
 # ANALYSIS=2
 # REPLICATE=1
-# OUTPUT_FOLDER="/data/home/bt12048/pride_reanalysis/outputs/test"
+# OUTPUT_FOLDER="/data/home/btx157/pride_reanalysis/outputs/test"
 # THREADS=70
 
 
@@ -110,14 +110,14 @@ START=$(date +%s)
 
 ############################################################
 
-# sh test.sh "Q9UN81" "PXD003406" '/data/home/bt12048/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf' '/data/home/bt12048/pride_reanalysis/parameters/inflammation.par' "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/bt12048/pride_reanalysis/outputs/test" 70
+# sh test.sh "Q9UN81" "PXD003406" '/data/home/btx157/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf' '/data/home/btx157/pride_reanalysis/parameters/inflammation.par' "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/btx157/pride_reanalysis/outputs/test" 70
 
 #######################################################
 ####                    PRIDE API                  ####
 #######################################################
 
 
-sh API.sh "Q9UN81" "PXD003406" '/data/home/bt12048/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf' '/data/home/bt12048/pride_reanalysis/parameters/inflammation.par' "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/bt12048/pride_reanalysis/outputs/test" 70
+sh API.sh "Q9UN81" "PXD003406" '/data/home/btx157/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf' '/data/home/btx157/pride_reanalysis/parameters/inflammation.par' "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/btx157/pride_reanalysis/outputs/test" 70
 
 
 #######################################################
@@ -137,7 +137,7 @@ sh API.sh "Q9UN81" "PXD003406" '/data/home/bt12048/pride_reanalysis/inputs/HUVEC
 
 # node parallelisation
 
-sh SearchGUI.sh "Q9UN81" "PXD003406" '/data/home/bt12048/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf' '/data/home/bt12048/pride_reanalysis/parameters/inflammation.par' "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/bt12048/pride_reanalysis/outputs/test" 70
+sh SearchGUI.sh "Q9UN81" "PXD003406" '/data/home/btx157/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf' '/data/home/btx157/pride_reanalysis/parameters/inflammation.par' "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/btx157/pride_reanalysis/outputs/test" 40
 
 # need to wait for all outputs to be produced before starting PeptideShaker
 
@@ -145,17 +145,17 @@ sh SearchGUI.sh "Q9UN81" "PXD003406" '/data/home/bt12048/pride_reanalysis/inputs
 ####              Peptide Shaker                   ####
 #######################################################
 
-sh PeptideShaker.sh "Q9UN81" "PXD003406" '/data/home/bt12048/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf' '/data/home/bt12048/pride_reanalysis/parameters/inflammation.par' "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/bt12048/pride_reanalysis/outputs/test" 70
+sh PeptideShaker.sh "Q9UN81" "PXD003406" '/data/home/btx157/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf' '/data/home/btx157/pride_reanalysis/parameters/inflammation.par' "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/btx157/pride_reanalysis/outputs/test" 70
 
-# #######################################################
-# ####              Data filtering                   ####
-# #######################################################
+#######################################################
+####              Data filtering                   ####
+#######################################################
 
-sh Data_Filtering.sh "Q9UN81" "PXD003406" '/data/home/bt12048/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf' '/data/home/bt12048/pride_reanalysis/parameters/inflammation.par' "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/bt12048/pride_reanalysis/outputs/test" 70
+sh Data_Filtering.sh "Q9UN81" "PXD003406" '/data/home/btx157/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf' '/data/home/btx157/pride_reanalysis/parameters/inflammation.par' "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/btx157/pride_reanalysis/outputs/test" 70
 
-# #######################################################
-# ####              Finish Analysis                  ####
-# #######################################################
+#######################################################
+####              Finish Analysis                  ####
+#######################################################
 
 ## Print Analysis time
 echo

@@ -17,12 +17,11 @@ REPLICATE=$8
 OUTPUT_FOLDER=$9
 THREADS=${10}
 
-
 #######################################################
 ####                  Search GUI                   ####
 #######################################################
 
-cd /data/home/bt12048/pride_reanalysis/SearchGUI.5/
+cd /data/home/btx157/pride_reanalysis/SearchGUI.5/
 
 if [ "$ANALYSIS" -eq 1 ]; then
 	echo
@@ -99,7 +98,7 @@ fi
 
 
 ## check if output was produced
-# if [ ! -f /data/home/bt12048/pride_reanalysis/outputs/searchgui_out.zip ]; 
+# if [ ! -f /data/home/btx157/pride_reanalysis/outputs/searchgui_out.zip ]; 
 # 	then echo "Error: SearchGUI did not finish running properly"
 # else
 # 	echo

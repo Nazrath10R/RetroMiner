@@ -13,13 +13,13 @@
 
 PROTEIN="Q9UN81"
 PXD="PXD003406"
-INPUT_FILE='/data/home/bt12048/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf'
-PARAMETERS='/data/home/bt12048/pride_reanalysis/parameters/inflammation.par'
+INPUT_FILE='/data/home/btx157/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf'
+PARAMETERS='/data/home/btx157/pride_reanalysis/parameters/inflammation.par'
 EXPERIMENT="inflammation"
 SAMPLE="inflammation_dataset_cyt_con_2a" 
 ANALYSIS=2
 REPLICATE=1
-OUTPUT_FOLDER="/data/home/bt12048/pride_reanalysis/outputs/test"
+OUTPUT_FOLDER="/data/home/btx157/pride_reanalysis/outputs/test"
 THREADS=70
 
 
@@ -73,7 +73,7 @@ mkdir $OUTPUT_FOLDER/$SAMPLE
 
 # ## protein Q9UN81
 # ## Search all Projects containing protein: Q9UN81
-# cd /data/home/bt12048/pride_reanalysis/inputs
+# cd /data/home/btx157/pride_reanalysis/inputs
 # echo
 # echo "Identifiying Projects..."
 # echo
@@ -215,7 +215,7 @@ START=$(date +%s)
 #######################################################
 
 
-cd /data/home/bt12048/pride_reanalysis/SearchGUI.5/
+cd /data/home/btx157/pride_reanalysis/SearchGUI.5/
 
 if [ "$ANALYSIS" -eq 1 ]; then
 	echo
@@ -242,7 +242,7 @@ if [ "$ANALYSIS" -eq 2 ]; then
 
 	## SearchGUI Parallelisation 
 
-	cd /data/home/bt12048/pride_reanalysis/SearchGUI.5/
+	cd /data/home/btx157/pride_reanalysis/SearchGUI.5/
 
 # tmux new -s msgf 'sh pride_reanalysis_4.sh'
 
@@ -291,7 +291,7 @@ fi
 # #######################################################
 
 ## check if output was produced
-# if [ ! -f /data/home/bt12048/pride_reanalysis/outputs/searchgui_out.zip ]; 
+# if [ ! -f /data/home/btx157/pride_reanalysis/outputs/searchgui_out.zip ]; 
 # 	then echo "Error: SearchGUI did not finish running properly"
 # else
 # 	echo
@@ -308,13 +308,13 @@ fi
 ####              Peptide Shaker                   ####
 #######################################################
 
-# cd /data/home/bt12048/pride_reanalysis/PeptideShaker.6/
+# cd /data/home/btx157/pride_reanalysis/PeptideShaker.6/
 
 # ## Run PeptideShaker
 # echo
 # java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.PeptideShakerCLI -experiment $EXPERIMENT -sample $SAMPLE -replicate $REPLICATE -identification_files $OUTPUT_FOLDER -spectrum_files $INPUT_FILE -id_params $PARAMETERS -out $OUTPUT_FOLDER/$SAMPLE.cpsx -threads $THREADS
 
-# # java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.PeptideShakerCLI -experiment inflammation -sample inflammation_dataset_cyt_con_2a -replicate 1 -identification_files /data/home/bt12048/pride_reanalysis/outputs/searchgui_out -spectrum_files /data/home/bt12048/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf -id_params /data/home/bt12048/pride_reanalysis/parameters/inflammation.par -out /data/home/bt12048/pride_reanalysis/outputs/inflammation_dataset_cyt_con_2a.cpsx -threads 18
+# # java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.PeptideShakerCLI -experiment inflammation -sample inflammation_dataset_cyt_con_2a -replicate 1 -identification_files /data/home/btx157/pride_reanalysis/outputs/searchgui_out -spectrum_files /data/home/btx157/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf -id_params /data/home/btx157/pride_reanalysis/parameters/inflammation.par -out /data/home/btx157/pride_reanalysis/outputs/inflammation_dataset_cyt_con_2a.cpsx -threads 18
 
 # if [ ! -f $OUTPUT_FOLDER/$SAMPLE.cpsx ]; 
 # 	then echo "Error: PeptideShaker did not finish running properly"
@@ -329,9 +329,9 @@ fi
 ## convert PeptideShaker results to .mzidML file
 echo "converting PeptideShaker output to mzIdentML files"
 echo
-java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.MzidCLI -in /data/home/bt12048/pride_reanalysis/outputs/inflammation_dataset_cyt_con_2a.cpsx -output_file /data/home/bt12048/pride_reanalysis/outputs/inflammation_dataset_cyt_con_2a.mzid -contact_first_name "Nazrath" -contact_last_name "Nawaz" -contact_email "nazrath.nawaz@yahoo.de" -contact_address "Fogg Building, London" -organization_name "QMUL" -organization_email "m.n.mohamednawaz@se12.qmul.ac.uk" -organization_address "Mile End Road, London"
+java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.MzidCLI -in /data/home/btx157/pride_reanalysis/outputs/inflammation_dataset_cyt_con_2a.cpsx -output_file /data/home/btx157/pride_reanalysis/outputs/inflammation_dataset_cyt_con_2a.mzid -contact_first_name "Nazrath" -contact_last_name "Nawaz" -contact_email "nazrath.nawaz@yahoo.de" -contact_address "Fogg Building, London" -organization_name "QMUL" -organization_email "m.n.mohamednawaz@se12.qmul.ac.uk" -organization_address "Mile End Road, London"
 
-# -spectrum_files /data/home/bt12048/pride_reanalysis/inputs/
+# -spectrum_files /data/home/btx157/pride_reanalysis/inputs/
 echo
 echo "conversion to mzIdentML successful"
 echo
@@ -342,17 +342,17 @@ echo
 
 # #### PeptideShaker Report
 tmux new-session -d -s report
-tmux send-keys 'java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.ReportCLI -in /data/home/bt12048/pride_reanalysis/outputs/inflammation_dataset_cyt_con_2a.cpsx -out_reports /data/home/bt12048/pride_reanalysis/outputs/ -reports 9'
+tmux send-keys 'java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.ReportCLI -in /data/home/btx157/pride_reanalysis/outputs/inflammation_dataset_cyt_con_2a.cpsx -out_reports /data/home/btx157/pride_reanalysis/outputs/ -reports 9'
 tmux detach
 
 # cannot be parallelised on the same file
-java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.ReportCLI -in /data/home/bt12048/pride_reanalysis/outputs/inflammation_dataset_cyt_con_2a.cpsx -out_reports /data/home/bt12048/pride_reanalysis/outputs/ -reports 1
+java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.ReportCLI -in /data/home/btx157/pride_reanalysis/outputs/inflammation_dataset_cyt_con_2a.cpsx -out_reports /data/home/btx157/pride_reanalysis/outputs/ -reports 1
 
 
 grep $PROTEIN inflammation_inflammation_dataset_cyt_con_2a_1_Extended_PSM_Report.txt
 
 # # #### PeptideShaker follow up
-# java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.FollowUpCLI -in /data/home/bt12048/pride_reanalysis/outputs/inflammation_dataset_cyt_con_2a.cpsx -recalibration_folder /data/home/bt12048/pride_reanalysis/outputs/recalibration
+# java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.FollowUpCLI -in /data/home/btx157/pride_reanalysis/outputs/inflammation_dataset_cyt_con_2a.cpsx -recalibration_folder /data/home/btx157/pride_reanalysis/outputs/recalibration
 
 # #######################################################
 
