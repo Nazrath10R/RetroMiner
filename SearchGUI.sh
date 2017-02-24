@@ -46,49 +46,22 @@ if [ "$ANALYSIS" -eq 2 ]; then
 	bash loading.sh
 	echo
 
-	## SearchGUI Parallelisation 
-
-	cd /data/home/bt12048/pride_reanalysis/SearchGUI.5/
-
-# tmux new -s msgf 'sh pride_reanalysis_4.sh'
-
-# tmux new-session -d -s msgf
-# tmux send-keys 'sh pride_reanalysis_4.sh' C-m
-# tmux detach -s msgf
+	cd /data/home/btx157/pride_reanalysis/SearchGUI.5/
 
 
-# tmux send -t msgf ls ENTER
 
-	# tmux new-session -d -s msgf
-	# tmux send-keys 'java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files '$INPUT_FILE' -output_folder '$OUTPUT_FOLDER' -id_params '$PARAMETERS' -msgf 1 -threads 36' C-m
-	# tmux detach -s msgf
 
-	# # java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER -id_params $PARAMETERS -omssa 1 -threads $THREADS
+	## working 
 
-	# tmux new-session -d -s xtandem
-	# tmux send-keys 'java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files '$INPUT_FILE' -output_folder '$OUTPUT_FOLDER' -id_params '$PARAMETERS' -xtandem 1 -threads 19' C-m
-	# tmux detach -s xtandem
 
-	# java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER -id_params $PARAMETERS -xtandem 1 -threads 19
 
-	# tmux new-session -d -s myrimatch
-	# tmux send-keys 'java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files '$INPUT_FILE' -output_folder '$OUTPUT_FOLDER' -id_params '$PARAMETERS' -myrimatch 1 -threads '$THREADS'' C-m
-	# tmux detach
 
-	# tmux new-session -d -s omssa
-	# tmux send-keys 'java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files '$INPUT_FILE' -output_folder '$OUTPUT_FOLDER' -id_params '$PARAMETERS' -omssa 1 -threads 25' C-m
-	# tmux detach
 
-	# tmux new-session -d -s comet
-	# tmux send-keys 'java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files '$INPUT_FILE' -output_folder '$OUTPUT_FOLDER' -id_params '$PARAMETERS' -comet 1 -threads 25' C-m
-	# tmux detach
 
- # 	# -tide 0 -andromeda 0
+
 
 fi
 
-# tmux new -s myname
-# tmux a -t myname
 
 # #######################################################
 
