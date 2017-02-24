@@ -49,6 +49,14 @@ if [ "$ANALYSIS" -eq 2 ]; then
 	cd /data/home/btx157/pride_reanalysis/SearchGUI.5/
 
 
+	ssh apoc5 'cd /data/home/btx157/pride_reanalysis/scripts/ ;
+	sh SearchGUI_module_1.sh "Q9UN81" "PXD003406" "/data/home/btx157/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf" "/data/home/btx157/pride_reanalysis/parameters/inflammation.par" "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/btx157/pride_reanalysis/outputs/test" 40' & 
+	
+	ssh apoc6 'cd /data/home/btx157/pride_reanalysis/scripts/ ;
+	sh SearchGUI_module_2.sh "Q9UN81" "PXD003406" "/data/home/btx157/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf" "/data/home/btx157/pride_reanalysis/parameters/inflammation.par" "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/btx157/pride_reanalysis/outputs/test" 30' & 
+	
+	ssh sm11 'cd /data/home/btx157/pride_reanalysis/scripts/ ;
+	sh SearchGUI_module_3.sh "Q9UN81" "PXD003406" "/data/home/btx157/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf" "/data/home/btx157/pride_reanalysis/parameters/inflammation.par" "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/btx157/pride_reanalysis/outputs/test" 4' & 
 
 
 	## working 
