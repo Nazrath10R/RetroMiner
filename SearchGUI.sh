@@ -70,6 +70,12 @@ if [ "$ANALYSIS" -eq 2 ]; then
 
 fi
 
+	# ssh apoc6 'cd /data/home/btx157/pride_reanalysis/scripts/ ;
+	# sh test.sh "Q9UN81" "PXD003406" "/data/home/btx157/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf" "/data/home/btx157/pride_reanalysis/parameters/inflammation.par" "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/btx157/pride_reanalysis/outputs/test" 40 2'
+	
+	# ssh apoc6 'cd /data/home/btx157/pride_reanalysis/scripts/ ;
+	# sh test.sh "$PROTEIN" "$PXD" "$INPUT_FILE" "$PARAMETERS" "$EXPERIMENT" "$SAMPLE" "$ANALYSIS" "$REPLICATE" "$OUTPUT_FOLDER" "$NODES"'
+
 
 # #######################################################
 
