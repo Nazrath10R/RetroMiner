@@ -1,7 +1,7 @@
-#!/bin/bash 
+#!/bin/bash
 
 #============================================================#
-# sh pride_reanalysis.sh "Q9UN81"
+# sh API.sh "Q9UN81"
 #============================================================#
 
 #------------------------------------------------------------#
@@ -43,36 +43,33 @@ cd /data/home/btx157/pride_reanalysis/inputs
 echo
 echo "Identifiying Projects..."
 echo
-wget https://www.ebi.ac.uk:443/pride/ws/archive/project/list?query=Q9UN81
+wget https://www.ebi.ac.uk:443/pride/ws/archive/project/list?query=$PROTEIN
 echo
 echo
 echo
 echo
-echo "Projects containing Q9UN81 identified"
+echo "Projects containing $PROTEIN identified"
 echo
 echo "Project Accession numbers:"
 echo
-grep -o "PXD[0-9][0-9][0-9][0-9][0-9][0-9]" list?query=Q9UN81
+grep -o "PXD[0-9][0-9][0-9][0-9][0-9][0-9]" list?query=$PROTEIN
 echo
-grep -o "PXD[0-9][0-9][0-9][0-9][0-9][0-9]" list?query=Q9UN81 > pxd_list.txt
+grep -o "PXD[0-9][0-9][0-9][0-9][0-9][0-9]" list?query=$PROTEIN > pxd_list.txt
 echo
 echo
-
-# sh full_project_API.sh PXD001694 /Users/nazrathnawaz/apocrita/pride_reanalysis/inputs
 
 while read line; 
 
-do sh ./API/project_API.sh "$line" /Users/nazrathnawaz/apocrita/pride_reanalysis/inputs; 
+do sh project_API.sh "$line" /Users/nazrathnawaz/apocrita/pride_reanalysis/inputs; 
 
 done < pxd_list.txt
 
-echo
 echo
 echo "Files Downloaded:"
 echo
 ls
 echo
-echo
+
 
 # ## Identify Array for Project 1
 # echo
@@ -124,35 +121,19 @@ echo
 # echo
 
 
+# sh full_project_API.sh PXD001694 /Users/nazrathnawaz/apocrita/pride_reanalysis/inputs
+
+
+
 # remove unnecessary files
 # echo "removing temp files..."
 # rm Q9UN81
 # # rm PXD003411
 # rm 60693
-# rm list?query=Q9UN81
+rm list?query=Q9UN81
 # rm assay_accession.txt
 # rm downloadLink.sh
-# rm pxd_list.txt
+rm pxd_list.txt
 
 
-
-# ## Search PRIDE datasets for project of interest
-# ## Search PRIDE datasets for biomarker of interest
-echo
-echo
-echo "Retrieving Data from PRIDE successful"
-echo
-echo "Starting Re-Analysis tools..."
-echo
-echo "Input data file:"
-echo "$INPUT_FILE"
-echo
-echo "Parameter file:"
-echo "PARAMETERS"
-echo
-echo "Sample Name:"
-echo "$SAMPLE"
-echo
-echo "Replicates: $REPLICATE"
-echo
 
