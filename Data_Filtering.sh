@@ -44,6 +44,8 @@ java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.ReportCLI -
 cd /data/home/btx157/pride_reanalysis/outputs/
 grep $PROTEIN inflammation_inflammation_dataset_cyt_con_2a_1_Extended_PSM_Report.txt > ${PROTEIN}_PSM_report.txt
 
+# grep -E "(Q9UN81)|(Q9UN82)|(O00370)" inflammation_inflammation_dataset_cyt_con_2a_1_Extended_PSM_Report.txt > Results.txt
+
 #### PeptideShaker follow up
 # java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.FollowUpCLI -in /data/home/btx157/pride_reanalysis/outputs/inflammation_dataset_cyt_con_2a.cpsx -recalibration_folder /data/home/btx157/pride_reanalysis/outputs/recalibration
 
