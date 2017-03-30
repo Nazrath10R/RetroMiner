@@ -37,8 +37,8 @@ echo
 wget https://www.ebi.ac.uk:443/pride/ws/archive/file/list/project/$PXD
 echo
 echo
-grep -E -o "(ftp:\/)\/[a-z.\/A-Z0-9._]+.mgf" PXD001694 > links.txt
-grep -E -o "(ftp:\/)\/[a-z.\/A-Z0-9._]+.mgf.gz" PXD001694 >> links.txt
+grep -E -o "(ftp:\/)\/[a-z.\/A-Z0-9._]+.mgf" $PXD > links.txt
+grep -E -o "(ftp:\/)\/[a-z.\/A-Z0-9._]+.mgf.gz" $PXD >> links.txt
 
 # sed -i -e 's/mgf","downloadLink":"/wget /g' downloadLink.sh
 
