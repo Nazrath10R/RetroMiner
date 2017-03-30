@@ -15,16 +15,16 @@ cd /data/home/btx157/pride_reanalysis/SearchGUI.5/
 
 echo
 echo
-echo "Using frontend6 for Xtandem and Ommsa"
+echo "Using sm11 for msgfs+"
 echo
 echo
 cd /data/home/btx157/pride_reanalysis/SearchGUI.5/
 echo
 
 {
-java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER -id_params $PARAMETERS -xtandem 1 -omssa 1 -threads $THREADS &
+java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER -id_params $PARAMETERS -msgf 1 -threads $THREADS &
 } &> /dev/null
 
 echo
-echo "Xtandem and Ommsa successful"
+echo "msgfs+ successful"
 echo

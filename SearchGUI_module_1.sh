@@ -15,17 +15,16 @@ cd /data/home/btx157/pride_reanalysis/SearchGUI.5/
 
 echo
 echo
-echo "Using frontend5 for MS_Amanda and Comet"
+echo "Using frontend6 for multiple Search Engines"
 echo
 echo
 cd /data/home/btx157/pride_reanalysis/SearchGUI.5/
 echo
 
 {
-java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER -id_params $PARAMETERS -ms_amanda 1 -threads $THREADS &
-java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER -id_params $PARAMETERS -comet 1 -threads $THREADS &
+java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER -id_params $PARAMETERS -msgf 1 -xtandem 1 -myrimatch 1 -ms_amanda 1 -omssa 1 -comet 1 -threads $THREADS &
 } &> /dev/null
 
 echo
-echo "MS_Amanda and Comet successful"
+echo "msgfs+ successful"
 echo
