@@ -116,8 +116,25 @@ START=$(date +%s)
 ####                    PRIDE API                  ####
 #######################################################
 
+sh ./API/API.sh "Q9UN81" "PXD003406"
 
-sh API.sh "Q9UN81" "PXD003406" '/data/home/btx157/pride_reanalysis/inputs/HUVEC_cyt_con_2a.mgf' '/data/home/btx157/pride_reanalysis/parameters/inflammation.par' "inflammation" "inflammation_dataset_cyt_con_2a" 2 1 "/data/home/btx157/pride_reanalysis/outputs/test" 70
+echo
+echo
+echo "Retrieving Data from PRIDE successful"
+echo
+echo "Starting Re-Analysis tools..."
+echo
+echo "Input data file:"
+echo "$INPUT_FILE"
+echo
+echo "Parameter file:"
+echo "PARAMETERS"
+echo
+echo "Sample Name:"
+echo "$SAMPLE"
+echo
+echo "Replicates: $REPLICATE"
+echo
 
 
 #######################################################
