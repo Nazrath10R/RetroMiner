@@ -1,0 +1,1 @@
+"Acession_number"	"Pub_year"	"Disease"	"Tissue_type"	"Protocol"	"file"	"fixed_modifications"	"variable_modifications"	"enzyme"	"threshold_name"	"threshold"	"parent_tolerance"	"parent_tolerance_unit"	"fragment_tolerance"	"fragment_tolerance_unit"
