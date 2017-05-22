@@ -6,16 +6,15 @@
 
 #### Command Line Arguments ####
 
-PROTEIN=$1
-PXD=$2
-INPUT_FILE=$3
-PARAMETERS=$4
-EXPERIMENT=$5
-SAMPLE=$6
-ANALYSIS=$7
-REPLICATE=$8
-OUTPUT_FOLDER=$9
-THREADS=${10}
+PXD=$1
+INPUT_FILE=$2
+PARAMETERS=$3
+EXPERIMENT=$4
+SAMPLE=$5
+ANALYSIS=$6
+REPLICATE=$7
+OUTPUT_FOLDER=$8
+THREADS=$9
 
 
 #######################################################
@@ -40,12 +39,12 @@ fi
 
 # #######################################################
 
-## convert PeptideShaker results to .mzidML file
-echo "converting PeptideShaker output to mzIdentML files"
-echo
-java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.MzidCLI -in /data/home/btx157/pride_reanalysis/outputs/inflammation_dataset_cyt_con_2a.cpsx -output_file /data/home/btx157/pride_reanalysis/outputs/inflammation_dataset_cyt_con_2a.mzid -contact_first_name "Nazrath" -contact_last_name "Nawaz" -contact_email "nazrath.nawaz@yahoo.de" -contact_address "Fogg Building, London" -organization_name "QMUL" -organization_email "m.n.mohamednawaz@se12.qmul.ac.uk" -organization_address "Mile End Road, London"
+## convert PeptideShaker results to .mzIdentML file
+# echo "converting PeptideShaker output to mzIdentML files"
+# echo
+# java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.MzidCLI -in /data/home/btx157/pride_reanalysis/outputs/inflammation_dataset_cyt_con_2a.cpsx -output_file /data/home/btx157/pride_reanalysis/outputs/inflammation_dataset_cyt_con_2a.mzid -contact_first_name "Nazrath" -contact_last_name "Nawaz" -contact_email "nazrath.nawaz@yahoo.de" -contact_address "Fogg Building, London" -organization_name "QMUL" -organization_email "m.n.mohamednawaz@se12.qmul.ac.uk" -organization_address "Mile End Road, London"
 
 # -spectrum_files /data/home/btx157/pride_reanalysis/inputs/
-echo
-echo "conversion to mzIdentML successful"
-echo
+# echo
+# echo "conversion to mzIdentML successful"
+
