@@ -10,8 +10,6 @@ https://www.ebi.ac.uk/pride/archive/
 Using the existing proteomics tools SearchGUI and PeptideShaker,
 this pipeline utilises a generic, reusable workflow in order to reanalyse PRIDE datasets
 
-The main purpose of the pipeline is to re-analyse PRIDE datasets identifying  
-the LINE-1 encoded retroelement proteins: ORF1p (Q9UN81), ORF2p (O00370) and ORF0
 
 
 - PRIDE - https://www.ebi.ac.uk/pride/archive/
