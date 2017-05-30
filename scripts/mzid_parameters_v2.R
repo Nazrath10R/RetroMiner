@@ -1,13 +1,23 @@
 #!/usr/bin/Rsript
+
 ####################################################################
 ##   extracting parameters from mzid files and storing in table   ##
 ####################################################################
 
-# source("https://bioconductor.org/biocLite.R")
+#                                                            #
+#   Extracting Search Engine parameters for PRIDE datasets   #
+#                                                            #
+
+########################################################################
+
+## Package Bioconductor "mzID"
+# source("https://bioconducstor.org/biocLite.R")
 # source("http://bioconductor.org/biocLite.R")
 # biocLite("mzID")
 
 library("mzID")
+
+########################################################################
 
 mzid_files <- list.files(pattern = '*.mzid', full.names = TRUE)
 
@@ -43,7 +53,7 @@ new.df <- NULL
 
 		# extract parameters
 		file <-	mzid_files[mzid]
-		enzymes <- parameters(mzResult)$enzymes 
+		enzymes <- parameters(mzResult)$enzymes
 		fragment_tolerance <- parameters(mzResult)$FragmentTolerance
 		parent_tolerance <- parameters(mzResult)$ParentTolerance
 		protocol <- parameters(mzResult)$searchType
@@ -107,7 +117,7 @@ new.df <- NULL
 				}
 
 				fixed_modifications <- append(fixed_modifications,mod_name)
-				
+
 				}
 
 			# variable
@@ -123,7 +133,7 @@ new.df <- NULL
 
 			}
 		}
-	 
+
 		fixed_modifications <- paste(fixed_modifications, collapse=", ")
 		variable_modifications <- paste(variable_modifications, collapse=", ")
 
@@ -150,6 +160,7 @@ new.df <- NULL
 
 # }
 
+#                  ~ end of script ~                  #
 
 ###########
 
@@ -174,21 +185,4 @@ new.df <- NULL
 # which(flatResults$accession == "Q9UN81")
 
 #######################################################
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
