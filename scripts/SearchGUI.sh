@@ -21,13 +21,18 @@
 #### Command Line Arguments ####
 
 PXD=$1
-ANALYSIS=$3
-THREADS=$4
+ANALYSIS=$2
+THREADS=$3
 
-INPUT_FILE="/data/home/btx157/pride_reanalysis/inputs/$PXD/"
+# PXD=PXD003417
+# ANALYSIS=1
+# THREADS=60
+
+INPUT_FILE="/data/home/btx157/pride_reanuqqalysis/inputs/$PXD/"
 PARAMETERS="/data/home/btx157/pride_reanalysis/parameters/$PXD.par"
 EXPERIMENT="$PXD"
 OUTPUT_FOLDER="/data/home/btx157/pride_reanalysis/outputs/$PXD/"
+
 SAMPLE="1"
 REPLICATE=1
 
@@ -47,8 +52,9 @@ if [ "$ANALYSIS" -eq 1 ]; then
 	echo "Starting SearchGUI for X!Tandem and Comet..."
 	# bash loading.sh
 	echo
-	ssh apoc5 "cd /data/home/btx157/pride_reanalysis/beta/ ;
+	ssh apoc5 "cd /data/home/btx157/pride_reanalysis/scripts/ ;
 	sh SearchGUI_module_1.sh '$PXD' '$INPUT_FILE' '$PARAMETERS' '$EXPERIMENT' '$SAMPLE' '$ANALYSIS' '$REPLICATE' '$OUTPUT_FOLDER' '$THREADS' &"
+
 fi
 
 

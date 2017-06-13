@@ -9,7 +9,7 @@
 #                                                            #
 
 #============================================================#
-# sh PeptideShaker.sh PXD003417 1 16
+# sh PeptideShaker.sh PXD003417 40
 #============================================================#
 
 #------------------------------------------------------------#
@@ -19,13 +19,16 @@
 #### Command Line Arguments ####
 
 PXD=$1
-SAMPLE=$2
-THREADS=$4
+THREADS=$2
 
+# PXD=PXD003417
+# THREADS=20
+
+SAMPLE=`awk -F: '{print v $1}' /data/home/btx157/pride_reanalysis/inputs/$PXD/samples.txt`
 INPUT_FILE="/data/home/btx157/pride_reanalysis/inputs/$PXD/"
 PARAMETERS="/data/home/btx157/pride_reanalysis/parameters/$PXD.par"
 EXPERIMENT="$PXD"
-OUTPUT_FOLDER="/data/home/btx157/pride_reanalysis/outputs/$PXD/"
+OUTPUT_FOLDER="/data/home/btx157/pride_reanalysis/outputs/$PXD"
 REPLICATE=1
 
 #------------------------------------------------------------#

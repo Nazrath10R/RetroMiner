@@ -12,7 +12,7 @@
 #============================================================#
 # to run:
 # sh reanalysis.sh PXD00xxxx SAMPLE ANALYSIS THREADS
-# sh reanalysis.sh PXD003417 1 1 70
+# sh reanalysis.sh PXD003417 1 20
 #============================================================#
 
 #------------------------------------------------------------#
@@ -20,9 +20,8 @@
 #------------------------------------------------------------#
 
 PXD=$1
-SAMPLE=$2
-ANALYSIS=$3
-THREADS=$4
+ANALYSIS=$2
+THREADS=$3
 
 #------------------------------------------------------------#
 
@@ -76,8 +75,6 @@ echo
 echo
 echo "Starting Re-Analysis tools..."
 echo
-echo "Input data file: $INPUT_FILE"
-echo
 echo "Parameter file: /data/home/btx157/pride_reanalysis/parameters/$PXD.par"
 echo
 echo "Sample Name: $SAMPLE"
@@ -87,19 +84,19 @@ echo
 ####                  Search GUI                   ####
 #######################################################
 
-sh SearchGUI.sh $PXD $SAMPLE $ANALYSIS $THREADS
+sh SearchGUI.sh $PXD $ANALYSIS $THREADS
 
-#######################################################
-####              Peptide Shaker                   ####
-#######################################################
+# #######################################################
+# ####              Peptide Shaker                   ####
+# #######################################################
 
-sh PeptideShaker.sh $PXD $SAMPLE $ANALYSIS $THREADS
+sh PeptideShaker.sh $PXD $THREADS
 
-#######################################################
-####              Data filtering                   ####
-#######################################################
+# #######################################################
+# ####              Data filtering                   ####
+# #######################################################
 
-sh Data_Filtering.sh $PXD $SAMPLE $ANALYSIS $THREADS
+sh Data_Filtering.sh $PXD
 
 #######################################################
 
@@ -107,8 +104,9 @@ sh Data_Filtering.sh $PXD $SAMPLE $ANALYSIS $THREADS
 echo
 echo "Re-analysis pipeline completed"
 echo
+TIME=`print_time $START`
 echo "Total Run-time for this Re-Analysis:"
-print_time $START
+echo $TIME
 echo
 
 ## e-mail notification
@@ -116,7 +114,7 @@ mail -s "Apocrita run completed" nazrath.nawaz@yahoo.de <<< "Dataset re-analysed
 
 Sample: $SAMPLE
 
-Total Run-time for this Re-Analysis: $START"
+Total Run-time for this Re-Analysis: $TIME"
 
 echo "email notification sent!"
 echo
