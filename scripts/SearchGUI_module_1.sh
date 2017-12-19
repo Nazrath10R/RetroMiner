@@ -24,14 +24,14 @@ THREADS=$9
 
 #------------------------------------------------------------#
 
-cd /data/home/btx157/pride_reanalysis/SearchGUI.5/
-
 echo
 echo "Using frontend5 for X!Tandem and Comet"
 echo
 echo
 cd /data/home/btx157/pride_reanalysis/SearchGUI.5/
 echo
+
+# module load java/1.8.0_121-oracle
 
 {
 java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER -id_params $PARAMETERS -xtandem 1 -comet 1 -threads "$THREADS"

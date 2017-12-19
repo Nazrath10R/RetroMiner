@@ -42,8 +42,12 @@ cd /data/home/btx157/pride_reanalysis/PeptideShaker.6/
 
 for x in $(seq 1 $SAMPLE); do
   mkdir /data/home/btx157/pride_reanalysis/reports/$PXD/$x
+  # mkdir /data/scratch/btx157/$PXD/$x
+  # cd /data/scratch/btx157
   echo
-  java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.ReportCLI -in $OUTPUT_FOLDER/$x.cpsx -out_reports /data/home/btx157/pride_reanalysis/reports/$PXD/$x -reports 1,3,5,6,7,8
+  java -Xmx200G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.ReportCLI -in $OUTPUT_FOLDER/$x.cpsx -out_reports /data/home/btx157/pride_reanalysis/reports/$PXD/$x -reports 7,8
+  # java -Xmx200G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.ReportCLI -in $OUTPUT_FOLDER/$x.cpsx -out_reports /data/scratch/btx157/$PXD/$x -reports 7,8
+  # 1,3,5,6,7,8
   echo
   echo "Reports created for Sample $x"
   echo
@@ -52,8 +56,12 @@ done
 # remove unnecessary files (all input and output)
 # rm -r /data/home/btx157/pride_reanalysis/inputs/$PXD    # Input folder
 # rm -r /data/home/btx157/pride_reanalysis/outputs/$PXD   # Output folder
+
 echo
-echo "Input / Output files deleted"
+# cd /data/home/btx157/pride_reanalysis/outputs/$PXD/
+# cp *.cpsx /data/SBCS-BessantLab/naz/cpsx_files/$PXD/
+echo "Backed up cpsx files to SBCS-BessantLab"
+# echo "Input / Output files deleted"
 echo
 
 #                  ~ end of script ~                  #

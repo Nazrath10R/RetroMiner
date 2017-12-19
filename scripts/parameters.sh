@@ -16,19 +16,34 @@
 #                        Variables                           #
 #------------------------------------------------------------#
 
-SAMPLE=$1 		#PXD
-DATABASE=/data/home/btx157/pride_reanalysis/human_proteome/human_proteome_2_concatenated_target_decoy.fasta
-PRECURSOR_TOLERANCE=25
+# SAMPLE=$1     #PXD
+# DATABASE=/data/home/btx157/pride_reanalysis/human_proteome/human_variants_proteome_concatenated_target_decoy.fasta
+# PRECURSOR_TOLERANCE=25
+# PREC_UNIT=1
+# FRAGMENT_TOLERANCE=20
+# FRAG_UNIT=1
+# DIGESTION=0
+# ENZYME='Trypsin'
+# SPECIFICITY=0
+# MAX_MISSED_CLEAVAGES=2
+# FIXED_MODIFICATIONS="Carbamidomethylation of C"
+# VARIABLE_MODIFICATIONS="Oxidation of M, Acetylation of protein N-term"
+# OUTPUT_FOLDER=/data/home/btx157/pride_reanalysis/parameters/
+
+SAMPLE=$1     #PXD
+DATABASE=/data/home/btx157/pride_reanalysis/human_proteome/human_variants_proteome_concatenated_target_decoy.fasta
+PRECURSOR_TOLERANCE=15
 PREC_UNIT=1
-FRAGMENT_TOLERANCE=20
-FRAG_UNIT=1
+FRAGMENT_TOLERANCE=0.8
+FRAG_UNIT=0
 DIGESTION=0
 ENZYME='Trypsin'
 SPECIFICITY=0
 MAX_MISSED_CLEAVAGES=2
 FIXED_MODIFICATIONS="Carbamidomethylation of C"
-VARIABLE_MODIFICATIONS="Oxidation of M, Acetylation of protein N-term"
+VARIABLE_MODIFICATIONS="Oxidation of M, Lysine 13C(6) 15N(2), Arginine 13C(6) 15N(4)"
 OUTPUT_FOLDER=/data/home/btx157/pride_reanalysis/parameters/
+
 
 #------------------------------------------------------------#
 
@@ -41,6 +56,8 @@ java -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.IdentificationParametersCLI -
 # -min_charge -max_charge -fi -ri -min_isotope -max_isotope
 # -id_params  An identification parameters file to modify (optional).
 # -mods
+
+
 
 
 #                  ~ end of script ~                  #

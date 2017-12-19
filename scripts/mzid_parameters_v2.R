@@ -166,10 +166,6 @@ new.df <- NULL
 
 # extracting_PRIDE_parameters("/Users/nazrathnawaz/Dropbox/PhD/PRIDE")
 
-###########
-
-# write.table(pride_metadata, file="test.parameters.txt", col.names=TRUE, sep="\t", append=FALSE)
-
 
 #######################################################
 

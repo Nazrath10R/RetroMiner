@@ -37,7 +37,7 @@ if (! PXD %in% table$Accession_number) {
 
 ## working directory
 dir <- paste("/data/home/btx157/pride_reanalysis/parameters/", paste(PXD, "/", sep=""), sep= "")
-
+dir.create(dir)
 setwd(dir)
 
 ##########################################################################

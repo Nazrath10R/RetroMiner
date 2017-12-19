@@ -47,12 +47,6 @@ jq '.list[] | select(.downloadLink | contains(".mzid") ) | .downloadLink ' files
 ## Project API
 wget -O metadata.json https://www.ebi.ac.uk:443/pride/ws/archive/project/$PXD 2> metadata.out
 
-# jq '.submissionDate' metadata.json
-# jq '.sampleProcessingProtocol' metadata.json
-# jq '.dataProcessingProtocol' metadata.json
-# jq '.experimentTypes' metadata.json
-# jq '.quantificationMethods' metadata.json
-
 Pub_date=$(jq '.submissionDate' metadata.json | sed 's/ /_/g')
 Sample_Protocol=$(jq '.sampleProcessingProtocol' metadata.json | sed 's/ /_/g')
 Data_Protocol=$(jq '.dataProcessingProtocol' metadata.json | sed 's/ /_/g')
@@ -140,7 +134,8 @@ echo
 echo
 
 # remove unnecessary files
-rm files.json
+rm 20
+rm files.json 2> /dev/null
 rm files.out
 rm metadata.out
 rm assay.out

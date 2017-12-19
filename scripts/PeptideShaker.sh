@@ -32,8 +32,8 @@ OUTPUT_FOLDER="/data/home/btx157/pride_reanalysis/outputs/$PXD"
 REPLICATE=1
 
 
-# cd /data/home/btx157/pride_reanalysis/outputs/$PXD/
-# unzip searchgui_out.zip
+cd /data/home/btx157/pride_reanalysis/outputs/$PXD/
+unzip searchgui_out.zip
 
 
 ###########################################################
