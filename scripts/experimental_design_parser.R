@@ -12,7 +12,7 @@ suppressMessages(library("argparser"))    # Argument passing
 
 ## Experimemental design table parser
 
-table <- read.table("/data/home/btx157/pride_reanalysis/parameters/experimental_design.txt")
+table <- read.table("/data/SBCS-BessantLab/naz/pride_reanalysis/parameters/experimental_design.txt")
 
 ##########################################################################
 
@@ -36,7 +36,7 @@ if (! PXD %in% table$Accession_number) {
 }
 
 ## working directory
-dir <- paste("/data/home/btx157/pride_reanalysis/parameters/", paste(PXD, "/", sep=""), sep= "")
+dir <- paste("/data/SBCS-BessantLab/naz/pride_reanalysis/parameters/", paste(PXD, "/", sep=""), sep= "")
 dir.create(dir)
 setwd(dir)
 
@@ -47,7 +47,7 @@ pxd_subset <- table[table$Accession_number==PXD,]
 
 samples <- unique(pxd_subset$Sample) # number of samples
 
-write(as.character(length(samples)), paste(paste("/data/home/btx157/pride_reanalysis/inputs/", PXD, sep=""), "/samples.txt", sep=""))
+write(as.character(length(samples)), paste(paste("/data/SBCS-BessantLab/naz/pride_reanalysis/inputs/", PXD, sep=""), "/samples.txt", sep=""))
 
 ## file name parser
 for(x in 1:length(samples)) {
@@ -70,7 +70,7 @@ for(x in 1:length(samples)) {
   # replicates
   } else {
 
-    write(TRUE, paste(paste("/data/home/btx157/pride_reanalysis/inputs/", PXD, sep=""), "/replicates.txt", sep=""))
+    write(TRUE, paste(paste("/data/SBCS-BessantLab/naz/pride_reanalysis/inputs/", PXD, sep=""), "/replicates.txt", sep=""))
 
     for(y in 1:length(subset$Replicate)) {
 

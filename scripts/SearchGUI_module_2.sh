@@ -12,6 +12,8 @@
 #                        Variables                           #
 #------------------------------------------------------------#
 
+DIR=/data/SBCS-BessantLab/naz
+
 PXD=$1
 INPUT_FILE=$2
 PARAMETERS=$3
@@ -24,13 +26,13 @@ THREADS=$9
 
 #------------------------------------------------------------#
 
-cd /data/home/btx157/pride_reanalysis/SearchGUI.5/
+cd $DIR/pride_reanalysis/SearchGUI.5/
 
 echo
 echo "Using sm11 for MSGF+ and MS_Amanda"
 echo
 echo
-cd /data/home/btx157/pride_reanalysis/SearchGUI.5/
+cd $DIR/pride_reanalysis/SearchGUI.5/
 echo
 
 {

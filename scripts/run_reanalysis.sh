@@ -11,8 +11,8 @@
 
 #============================================================#
 # to run:
-# sh reanalysis.sh PXD00xxxx SAMPLE ANALYSIS THREADS
-# sh reanalysis.sh PXD003417 1 20
+# sh run_reanalysis.sh PXD00xxxx SAMPLE ANALYSIS THREADS NICE
+# sh run_reanalysis.sh PXD003417 1 20 10
 #============================================================#
 
 DIR=/data/SBCS-BessantLab/naz
@@ -55,49 +55,49 @@ function print_time {
 START=$(date +%s)
 
 ############################################################
-
+echo
+cat logo.txt
 echo
 echo "Starting Re-Analysis Pipeline..."
 echo
-echo "Creating Output folder"
-echo
-echo
-# mkdir $DIR/pride_reanalysis/outputs/$PXD/
-echo
-
-#######################################################
-####                    PRIDE API                  ####
-#######################################################
-
-# sh API_data.sh $PXD
-
-############################################################
-
 echo
 echo "Starting Re-Analysis tools..."
 echo
 echo "Parameter file: $DIR/pride_reanalysis/parameters/$PXD.par"
+# echo
+# echo "Sample Name: $SAMPLE"
 echo
-echo "Sample Name: $SAMPLE"
+# sleep 2
+echo "Please wait for RetroMiner to start..."
 echo
-
+sh loading.sh 4
+echo
+# touch 
+# touch 
+# touch 
 #######################################################
 ####                  Search GUI                   ####
 #######################################################
 
-sh SearchGUI.sh $PXD $ANALYSIS $THREADS
+echo "SearchGUI running..."
+# nice -n 10 sh SearchGUI.sh $PXD $ANALYSIS $THREADS > $DIR/pride_reanalysis/logs/$PXD/${PXD}_sg_log.txt
+nice -n 20 sh SearchGUI.sh $PXD $ANALYSIS $THREADS > $DIR/pride_reanalysis/logs/$PXD/${PXD}_sg_log.txt
 
-# #######################################################
-# ####              Peptide Shaker                   ####
-# #######################################################
+#######################################################
+####              Peptide Shaker                   ####
+#######################################################
 
-sh PeptideShaker.sh $PXD $THREADS
+echo "PeptideShaker running..."
+# nice -n 10 sh PeptideShaker.sh $PXD $THREADS > $DIR/pride_reanalysis/logs/$PXD/${PXD}_ps_log.txt
+nice -n 20 sh PeptideShaker.sh $PXD $THREADS > $DIR/pride_reanalysis/logs/$PXD/${PXD}_ps_log.txt
 
-# #######################################################
-# ####              Data filtering                   ####
-# #######################################################
+#######################################################
+####              Data filtering                   ####
+#######################################################
 
-sh Data_Filtering.sh $PXD
+echo "Data filtering running..."
+# nice -n 10 sh Data_Filtering.sh $PXD > $DIR/pride_reanalysis/logs/$PXD/${PXD}_df_log.txt
+nice -n 20 sh Data_Filtering.sh $PXD > $DIR/pride_reanalysis/logs/$PXD/${PXD}_df_log.txt
 
 #######################################################
 
@@ -112,8 +112,6 @@ echo
 
 ## e-mail notification
 mail -s "Apocrita run completed" nazrath.nawaz@yahoo.de <<< "Dataset re-analysed: $PXD
-
-Sample: $SAMPLE
 
 Total Run-time for this Re-Analysis: $TIME"
 

@@ -13,6 +13,8 @@
 # sh API_data.sh PXD003417
 #============================================================#
 
+DIR=/data/SBCS-BessantLab/naz
+
 #------------------------------------------------------------#
 #         Downloads spectral data for Project PXD            #
 #------------------------------------------------------------#
@@ -22,7 +24,7 @@ PXD=$1
 #------------------------------------------------------------#
 
 # change for User
-cd /data/home/btx157/pride_reanalysis/inputs
+cd $DIR/pride_reanalysis/inputs
 
 # creates folder for data to be downloaded into
 mkdir $PXD

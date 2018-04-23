@@ -1,0 +1,12 @@
+sh parameters.sh PXD003406
+sh parameters.sh PXD003407
+sh parameters.sh PXD003408
+sh parameters.sh PXD003409
+sh parameters.sh PXD003410
+sh parameters.sh PXD003411
+sh parameters.sh PXD003412
+sh parameters.sh PXD003413
+sh parameters.sh PXD003414
+sh parameters.sh PXD003415
+sh parameters.sh PXD003416
+sh parameters.sh PXD003417

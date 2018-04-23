@@ -12,12 +12,13 @@
 # sh API_parameters.sh PXD003271
 #============================================================#
 
+DIR=/data/SBCS-BessantLab/naz
 
 PXD=$1
 
 #------------------------------------------------------------#
 
-cd /data/home/btx157/pride_reanalysis/inputs
+cd $DIR/pride_reanalysis/inputs
 mkdir $PXD
 cd $PXD
 
@@ -103,8 +104,9 @@ echo
 echo "Starting R parameter parsing"
 echo
 echo
-module load R/3.3.1_with_lib
-Rscript /data/home/btx157/pride_reanalysis/pride_parameters/mzid_parameters_v2.R
+# module load R/3.3.1_with_lib
+module load R/3.3.2
+Rscript $DIR/pride_reanalysis/pride_parameters/mzid_parameters_v2.R
 echo
 echo
 echo "parameter parsed"
@@ -148,7 +150,7 @@ rm links2.sh 2> /dev/null
 rm links2.sh-e 2> /dev/null
 rm *.mzid
 rm *.gz 2> /dev/null
-rm *.mgf 2> /dev/null
+# rm *.mgf 2> /dev/null
 # rm parameters.txt
 rm parameters.txte 2> /dev/null
 
