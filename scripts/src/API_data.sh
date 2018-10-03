@@ -13,7 +13,8 @@
 # sh API_data.sh PXD003417
 #============================================================#
 
-DIR=/data/SBCS-BessantLab/naz
+DIR=/data/SBCS-BessantLab/naz/pride_reanalysis
+SCRIPTS=$DIR/scripts/src
 
 #------------------------------------------------------------#
 #         Downloads spectral data for Project PXD            #
@@ -24,7 +25,7 @@ PXD=$1
 #------------------------------------------------------------#
 
 # change for User
-cd $DIR/pride_reanalysis/inputs
+cd $DIR/inputs
 
 # creates folder for data to be downloaded into
 mkdir $PXD
@@ -44,12 +45,19 @@ echo "Project: $PXD"
 echo
 
 ## File API
-wget -O files.json https://www.ebi.ac.uk:443/pride/ws/archive/file/list/project/$PXD 2> json.out
+wget -O files.json https://www.ebi.ac.uk:443/pride/ws/archive/file/list/project/$PXD  --no-check-certificate 2> json.out
 ## extract mgf links using json processor
+
 jq '.list[] | select(.downloadLink | contains(".mgf") ) | .downloadLink ' files.json > links.sh
 jq '.list[] | select(.downloadLink | contains(".MGF") ) | .downloadLink ' files.json >> links.sh
+
+jq '.list[] | select(.downloadLink | contains(".raw") ) | .downloadLink ' files.json > links.sh
+jq '.list[] | select(.downloadLink | contains(".RAW") ) | .downloadLink ' files.json >> links.sh
+
 # sed -i -e 's/"//g' links.sh 		# remove quotation marks
 sed -i -e 's/^/wget /' links.sh 	# insert wget command
+
+sed -i -e 's/#/%23/' links.sh   # replace hash with percentage 23
 
 echo
 echo "Starting file download..."
@@ -63,7 +71,7 @@ number_of_links=$(wc -l < links.sh)
 
 ## run download links
 # loading bar (number of links divide by 10)
-sh ../../loading.sh $number_of_links & sh links.sh &> download.out & wait $!
+sh $SCRIPTS/loading.sh $number_of_links & sh links.sh &> download.out & wait $!
 
 echo
 echo
@@ -72,15 +80,26 @@ echo
 rm json.out
 rm download.out
 rm *.mzid 2> /dev/null
-rm *.RAW 2> /dev/null
+# rm *.RAW 2> /dev/null
 rm links.sh
 rm files.json
 # rm *.mgf
 gunzip *.gz
 
-echo "Retrieving Data via API from PRIDE successful"
-echo
-echo "All spectral files downloaded"
-echo
+if (( `ls -1 | wc -l` == $number_of_links ))
+  then
+  echo
+  echo "Retrieving Data via API from PRIDE successful"
+  echo
+  echo "All spectral files downloaded"  
+  Rscript $SCRIPTS/log.R --PXD "$PXD" --IN "downloaded"
+  echo
+  else
+  echo
+  echo -en "\033[31m"
+  echo "ERROR: not all files downloaded"
+  echo -en "\033[0m"
+  echo
+fi
 
 #                  ~ end of script ~                  #

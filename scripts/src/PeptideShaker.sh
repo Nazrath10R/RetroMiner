@@ -12,7 +12,7 @@
 # sh PeptideShaker.sh PXD003417 40
 #============================================================#
 
-DIR=/data/SBCS-BessantLab/naz
+DIR=/data/SBCS-BessantLab/naz/pride_reanalysis
 
 #------------------------------------------------------------#
 #                        Variables                           #
@@ -26,15 +26,15 @@ THREADS=$2
 # PXD=PXD003417
 # THREADS=20
 
-SAMPLE=`awk -F: '{print v $1}' $DIR/pride_reanalysis/inputs/$PXD/samples.txt`
-INPUT_FILE="$DIR/pride_reanalysis/inputs/$PXD/"
-PARAMETERS="$DIR/pride_reanalysis/parameters/$PXD.par"
+SAMPLE=`awk -F: '{print v $1}' $DIR/inputs/$PXD/samples.txt`
+INPUT_FILE="$DIR/inputs/$PXD/"
+PARAMETERS="$DIR/parameters/$PXD.par"
 EXPERIMENT="$PXD"
-OUTPUT_FOLDER="$DIR/pride_reanalysis/outputs/$PXD"
+OUTPUT_FOLDER="$DIR/outputs/$PXD"
 REPLICATE=1
 
 
-cd $DIR/pride_reanalysis/outputs/$PXD/
+cd $DIR/outputs/$PXD/
 unzip searchgui_out.zip
 
 
@@ -43,21 +43,22 @@ unzip searchgui_out.zip
 ###########################################################
 
 ## Replicates
-if [ -f $DIR/pride_reanalysis/inputs/$PXD/replicates.txt ];
+if [ -f $DIR/inputs/$PXD/replicates.txt ];
   
   then 
   
-  cd $DIR/pride_reanalysis/parameters/$PXD/
+  cd $DIR/parameters/$PXD/
  
   # number of search engine runs
   RUNS=`ls -1 | wc -l`
-  ls | cat > $DIR/pride_reanalysis/inputs/$PXD/runs.txt
+  ls | cat > $DIR/inputs/$PXD/runs.txt
+  SAM_REP_FILE=$DIR/inputs/$PXD/runs.txt
 
   ## loop for runs
   for x in $(seq 1 $RUNS); do
 
-  RUN_NAME=`sed "$x q;d" $DIR/pride_reanalysis/inputs/$PXD/runs.txt`
-  INPUT_FILE_NAMES=`awk -F= '{ print $1 }' $RUN_NAME`
+  RUN_NAME=`sed "$x q;d" $DIR/inputs/$PXD/runs.txt`
+  INPUT_FILE_NAMES=`awk -F= '{ print $1 }' $DIR/parameters/$PXD/$RUN_NAME`
 
   mkdir "$OUTPUT_FOLDER/run_$x"
 
@@ -65,8 +66,8 @@ if [ -f $DIR/pride_reanalysis/inputs/$PXD/replicates.txt ];
     # loop for SearchGUI output files
     for y in $INPUT_FILE_NAMES; do
 
-      XTANDEM_FILE="$DIR/pride_reanalysis/outputs/$PXD/$y.t.xml"
-      COMET_FILE="$DIR/pride_reanalysis/outputs/$PXD/$y.comet.pep.xml"
+      XTANDEM_FILE="$DIR/outputs/$PXD/$y.t.xml"
+      COMET_FILE="$DIR/outputs/$PXD/$y.comet.pep.xml"
 
       # group appropriate SearchGUI output files into folders for each run
       mv $XTANDEM_FILE "$OUTPUT_FOLDER/run_$x/"
@@ -74,11 +75,20 @@ if [ -f $DIR/pride_reanalysis/inputs/$PXD/replicates.txt ];
 
     done
 
+      SAM_REP_STRING=`sed ''"${x}"'q;d' $SAM_REP_FILE`
+      SAMPLE_NUMBER="$(cut -d'_' -f3 <<< $SAM_REP_STRING )"
+      REPLICATE_NUMBER="$(cut -d'_' -f5 <<< $SAM_REP_STRING )"
+
+
       ## Run PeptideShaker
       echo
-      cd $DIR/pride_reanalysis/PeptideShaker.6/
+      cd $DIR/PeptideShaker.6/
       echo
-      java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.PeptideShakerCLI -experiment $EXPERIMENT -sample $x -replicate $REPLICATE -identification_files $OUTPUT_FOLDER/run_$x/ -spectrum_files $INPUT_FILE -id_params $PARAMETERS -out $OUTPUT_FOLDER/$x.cpsx -threads $THREADS
+      nice -n 20 java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.PeptideShakerCLI \
+      -experiment $EXPERIMENT -sample $SAMPLE_NUMBER -replicate $REPLICATE_NUMBER \
+      -identification_files $OUTPUT_FOLDER/run_$x/ \
+      -spectrum_files $INPUT_FILE -id_params $PARAMETERS -out $OUTPUT_FOLDER/$x.cpsx \
+      -threads $THREADS
       echo
 
       # check if PeptideShaker's output was produced
@@ -107,14 +117,14 @@ else
 
     mkdir "$OUTPUT_FOLDER/sample_$x"
 
-    INPUT_FILE_NAMES=`awk -F= '{ print $1 }' $DIR/pride_reanalysis/parameters/$PXD/${PXD}_sample_${x}_rep_0`
+    INPUT_FILE_NAMES=`awk -F= '{ print $1 }' $DIR/parameters/$PXD/${PXD}_sample_${x}_rep_0`
 
 
     ## loop through SearchGUI output files
     for y in $INPUT_FILE_NAMES; do
 
-      XTANDEM_FILE="$DIR/pride_reanalysis/outputs/$PXD/$y.t.xml"
-      COMET_FILE="$DIR/pride_reanalysis/outputs/$PXD/$y.comet.pep.xml"
+      XTANDEM_FILE="$DIR/outputs/$PXD/$y.t.xml"
+      COMET_FILE="$DIR/outputs/$PXD/$y.comet.pep.xml"
 
       # group appropriate SearchGUI output files into folders for each run
       mv $XTANDEM_FILE "$OUTPUT_FOLDER/sample_$x/"
@@ -124,9 +134,9 @@ else
 
       ## Run PeptideShaker
       echo
-      cd $DIR/pride_reanalysis/PeptideShaker.6/
+      cd $DIR/PeptideShaker.6/
       echo
-      java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.PeptideShakerCLI -experiment $EXPERIMENT -sample $x -replicate $REPLICATE -identification_files $OUTPUT_FOLDER/sample_$x/ -spectrum_files $INPUT_FILE -id_params $PARAMETERS -out $OUTPUT_FOLDER/$x.cpsx -threads $THREADS
+      nice -n 20 java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.PeptideShakerCLI -experiment $EXPERIMENT -sample $x -replicate $REPLICATE -identification_files $OUTPUT_FOLDER/sample_$x/ -spectrum_files $INPUT_FILE -id_params $PARAMETERS -out $OUTPUT_FOLDER/$x.cpsx -threads $THREADS
       echo
 
       if [ ! -f $OUTPUT_FOLDER/$x.cpsx ];

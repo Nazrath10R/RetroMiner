@@ -11,12 +11,11 @@
 
 #============================================================#
 # to run:
-# sh retrominer.sh PXD00xxxx ANALYSIS THREADS 
-# sh retrominer.sh PXD000651 1 20
+# sh reanalysis.sh PXD00xxxx SAMPLE ANALYSIS THREADS
+# sh reanalysis.sh PXD003417 1 20
 #============================================================#
 
-DIR=/data/SBCS-BessantLab/naz/pride_reanalysis
-SCRIPTS=$DIR/scripts/src
+DIR=/data/SBCS-BessantLab/naz
 
 #------------------------------------------------------------#
 #                        Parameters                          #
@@ -56,84 +55,49 @@ function print_time {
 START=$(date +%s)
 
 ############################################################
-echo
-cat logo.txt
+
 echo
 echo "Starting Re-Analysis Pipeline..."
 echo
+echo "Creating Output folder"
+echo
+echo
+# mkdir $DIR/pride_reanalysis/outputs/$PXD/
+echo
+
+#######################################################
+####                    PRIDE API                  ####
+#######################################################
+
+# sh API_data.sh $PXD
+
+############################################################
+
 echo
 echo "Starting Re-Analysis tools..."
 echo
-echo "Parameter file: $DIR/parameters/$PXD.par"
-# echo
-# echo "Sample Name: $SAMPLE"
+echo "Parameter file: $DIR/pride_reanalysis/parameters/$PXD.par"
 echo
-# sleep 2
-echo "Please wait for RetroMiner to start..."
-echo
-sh $SCRIPTS/loading.sh 4
+echo "Sample Name: $SAMPLE"
 echo
 
 #######################################################
 ####                  Search GUI                   ####
 #######################################################
 
-echo -en "\033[34m"
-echo "SearchGUI running..."
-echo -en "\033[0m"
-echo
-# nice -n 10 sh SearchGUI.sh $PXD $ANALYSIS $THREADS > $DIR/logs/$PXD/${PXD}_sg_log.txt
-nice -n 20 sh $SCRIPTS/SearchGUI.sh $PXD $ANALYSIS $THREADS |& tee $DIR/logs/$PXD/${PXD}_sg_log.txt
-echo
+sh SearchGUI.sh $PXD $ANALYSIS $THREADS
 
+# #######################################################
+# ####              Peptide Shaker                   ####
+# #######################################################
 
-if ls $DIR/outputs/$PXD/*xml 1> /dev/null 2>&1; then
-    echo "SG check passed"
-else
-    echo "SG check failed"
-    exit 1
-fi
+sh PeptideShaker.sh $PXD $THREADS
 
-#######################################################
-####              Peptide Shaker                   ####
-#######################################################
+# #######################################################
+# ####              Data filtering                   ####
+# #######################################################
 
-echo -en "\033[34m"
-echo "PeptideShaker running..."
-echo -en "\033[0m"
-# nice -n 10 sh PeptideShaker.sh $PXD $THREADS > $DIR/logs/$PXD/${PXD}_ps_log.txt
-nice -n 20 sh $SCRIPTS/PeptideShaker.sh $PXD $THREADS |& tee $DIR/logs/$PXD/${PXD}_ps_log.txt
-echo
-
-if ls $DIR/outputs/$PXD/*cpsx 1> /dev/null 2>&1; then
-    echo "PS check passed"
-else
-    echo "PS check failed"
-    exit 1
-fi
-
-
-#######################################################
-####              Data filtering                   ####
-#######################################################
-
-echo -en "\033[34m"
-echo "Data filtering running..."
-echo -en "\033[0m"
-# nice -n 10 sh Data_Filtering.sh $PXD > $DIR/logs/$PXD/${PXD}_df_log.txt
-nice -n 20 sh $SCRIPTS/Data_Filtering.sh $PXD |& tee $DIR/logs/$PXD/${PXD}_df_log.txt
-echo
-
-
-#######################################################
-####               Custom Export                   ####
-#######################################################
-
-echo -en "\033[34m"
-echo "Custom RT protein result extraction..."
-echo -en "\033[0m"
-sh $SCRIPTS/Custom_Report.sh $PXD
-echo
+sh Data_Filtering.sh $PXD
 
 #######################################################
 
@@ -141,16 +105,15 @@ echo
 echo
 echo "Re-analysis pipeline completed"
 echo
-echo "$PXD" 
-echo
 TIME=`print_time $START`
 echo "Total Run-time for this Re-Analysis:"
 echo $TIME
 echo
-Rscript $SCRIPTS/log.R --PXD "$PXD" --IN "retromined"
 
 ## e-mail notification
 mail -s "Apocrita run completed" nazrath.nawaz@yahoo.de <<< "Dataset re-analysed: $PXD
+
+Sample: $SAMPLE
 
 Total Run-time for this Re-Analysis: $TIME"
 

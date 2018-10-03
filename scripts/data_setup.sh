@@ -15,8 +15,13 @@
 # sh data_setup.sh PXD003417
 #============================================================#
 
-DIR=/data/SBCS-BessantLab/naz
+DIR=/data/SBCS-BessantLab/naz/pride_reanalysis
+SCRIPTS=$DIR/pride_reanalysis/scripts/src
+
+#============================================================#
+
 PXD=$1
+
 #------------------------------------------------------------#
 #                                                            #
 #                 Data and Parameters Set Up                 # 
@@ -27,18 +32,19 @@ PXD=$1
 ####          PRIDE parameters extraction          ####
 #######################################################
 
-sh API_parameters.sh $PXD
+sh $SCRIPTS/API_parameters.sh $PXD
 
 
 #######################################################
 ####            PRIDE API Data download            ####
 #######################################################
 
-sh API_data.sh $PXD
+sh $SCRIPTS/API_data.sh $PXD
 
 #######################################################
 ####          Experimental Design parsing          ####
 #######################################################
+
 ## EDIT TABLE 
 # module load R/3.3.2
 # Rscript experimental_design_parser.R --PXD "$PXD"
@@ -48,7 +54,7 @@ sh API_data.sh $PXD
 ####                Create log files               ####
 #######################################################
 
-cd /data/SBCS-BessantLab/naz/pride_reanalysis/logs
+cd $DIR/logs
 mkdir $PXD
 cd $PXD
 
@@ -56,7 +62,7 @@ touch ${PXD}_sg_log.txt
 touch ${PXD}_ps_log.txt
 touch ${PXD}_df_log.txt
 
-cd /data/SBCS-BessantLab/naz/pride_reanalysis/scripts
+cd $DIR/scripts
 
 
 #------------------------------------------------------------#

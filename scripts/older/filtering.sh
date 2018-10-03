@@ -3,15 +3,16 @@
 
 cd /data/SBCS-BessantLab/naz/pride_reanalysis/reports/
 
-FOLDERS=$(cat to_filter.txt)
-COUNTER=21
+FOLDERS=$(cat to_filter2.txt)
+COUNTER="$(cat to_filter2.txt | wc -l)"
 
 
 for y in $FOLDERS; do
 
   cd $y
   echo -en "\033[34m"
-  echo $(($COUNTER-1))
+  COUNTER=$[$COUNTER -1]
+  echo $(($COUNTER))
   echo $y
   echo -en "\033[0m"
 

@@ -12,7 +12,7 @@
 # sh Data_Filtering.sh PXD003417
 #============================================================#
 
-DIR=/data/SBCS-BessantLab/naz
+DIR=/data/SBCS-BessantLab/naz/pride_reanalysis
 
 #------------------------------------------------------------#
 #                        Variables                           #
@@ -22,13 +22,13 @@ DIR=/data/SBCS-BessantLab/naz
 
 PXD=$1
 
-mkdir $DIR/pride_reanalysis/reports/$PXD/
+mkdir $DIR/reports/$PXD/
 
-SAMPLE=`awk -F: '{print v $1}' $DIR/pride_reanalysis/inputs/$PXD/samples.txt`
-INPUT_FILE="$DIR/pride_reanalysis/inputs/$PXD/"
-PARAMETERS="$DIR/pride_reanalysis/parameters/$PXD.par"
+SAMPLE=`awk -F: '{print v $1}' $DIR/inputs/$PXD/samples.txt`
+INPUT_FILE="$DIR/inputs/$PXD/"
+PARAMETERS="$DIR/parameters/$PXD.par"
 EXPERIMENT="$PXD"
-OUTPUT_FOLDER="$DIR/pride_reanalysis/outputs/$PXD/"
+OUTPUT_FOLDER="$DIR/outputs/$PXD/"
 REPLICATE=1
 
 #------------------------------------------------------------#
@@ -40,14 +40,14 @@ REPLICATE=1
 
 echo
 echo "Starting Report Generation..."
-cd $DIR/pride_reanalysis/PeptideShaker.6/
+cd $DIR/PeptideShaker.6/
 
 for x in $(seq 1 $SAMPLE); do
-  mkdir $DIR/pride_reanalysis/reports/$PXD/$x
+  mkdir $DIR/reports/$PXD/$x
   # mkdir /data/scratch/btx157/$PXD/$x
   # cd /data/scratch/btx157
   echo
-  java -Xmx200G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.ReportCLI -in $OUTPUT_FOLDER/$x.cpsx -out_reports $DIR/pride_reanalysis/reports/$PXD/$x -reports 7,8
+  java -Xmx200G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.ReportCLI -in $OUTPUT_FOLDER/$x.cpsx -out_reports $DIR/reports/$PXD/$x -reports 7,8
   # java -Xmx200G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.ReportCLI -in $OUTPUT_FOLDER/$x.cpsx -out_reports /data/scratch/btx157/$PXD/$x -reports 7,8
   # 1,3,5,6,7,8
   echo
@@ -56,19 +56,23 @@ for x in $(seq 1 $SAMPLE); do
 done
 
 # remove unnecessary files (all input and output)
-# rm -r $DIR/pride_reanalysis/inputs/$PXD    # Input folder
-# rm -r $DIR/pride_reanalysis/outputs/$PXD   # Output folder
+# rm -r $DIR/inputs/$PXD    # Input folder
+# rm -r $DIR/outputs/$PXD   # Output folder
 
 echo
-# cd $DIR/pride_reanalysis/outputs/$PXD/
+# cd $DIR/outputs/$PXD/
 # cp *.cpsx /data/SBCS-BessantLab/naz/cpsx_files/$PXD/
 # echo "Backed up cpsx files to SBCS-BessantLab"
 # echo "Input / Output files deleted"
 echo
 
+## File size
+du -sh $INPUT_FILE > $OUTPUT_FOLDER/${PXD}_size.txt
+
+
 ## Output checking
 
-RESULT_FOLDERS=`find /$DIR/pride_reanalysis/reports/$PXD/ -maxdepth 1 -type d -print| wc -l`
+RESULT_FOLDERS=`find /$DIR/reports/$PXD/ -maxdepth 1 -type d -print| wc -l`
 
 if [ "$(($RESULT_FOLDERS-1))" == "$SAMPLE" ]; then
   echo

@@ -7,8 +7,12 @@ DIR=/data/SBCS-BessantLab/naz/
 cd /data/SBCS-BessantLab/naz/pride_reanalysis/outputs/
 
 # FOLDERS=$(ls -1)
-FOLDERS=$(cat output_to_convert2.txt)
-COUNTER=21
+# FOLDERS=$(cat output_to_convert3.txt)
+FOLDERS=PXD006833
+
+
+# COUNTER=21
+COUNTER=1
 # COUNTER=$(ls -1 | wc -l)
 
 for y in $FOLDERS; do
@@ -27,8 +31,9 @@ for y in $FOLDERS; do
 
     #9,10,11,12,13
 
-    # 13 done
-    # 11 now
+    # 13 
+    java -Xmx200G -cp /data/SBCS-BessantLab/naz/pride_reanalysis/PeptideShaker.6/PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.ReportCLI -in $x -out_reports $DIR/pride_reanalysis/reports/$y/ -reports 13    
+    # 11 
     java -Xmx200G -cp /data/SBCS-BessantLab/naz/pride_reanalysis/PeptideShaker.6/PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.ReportCLI -in $x -out_reports $DIR/pride_reanalysis/reports/$y/ -reports 11
     # 12
     java -Xmx200G -cp /data/SBCS-BessantLab/naz/pride_reanalysis/PeptideShaker.6/PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.ReportCLI -in $x -out_reports $DIR/pride_reanalysis/reports/$y/ -reports 12
@@ -37,7 +42,7 @@ for y in $FOLDERS; do
     # 9
     java -Xmx200G -cp /data/SBCS-BessantLab/naz/pride_reanalysis/PeptideShaker.6/PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.ReportCLI -in $x -out_reports $DIR/pride_reanalysis/reports/$y/ -reports 9
 
-    # java -cp /data/SBCS-BessantLab/naz/pride_reanalysis/PeptideShaker.6/PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.MzidCLI -in $x -output_file $PWD/${x%.cpsx}.mzid -contact_first_name "Nazrath" -contact_last_name "Nawaz" -contact_email "nazrath.nawaz@yahoo.de" -contact_address "Fogg Building" -organization_name "QMUL" -organization_email "m.n.mohamednawaz@qmul.ac.uk" -organization_address  "Mile end road, London"
+  #   # java -cp /data/SBCS-BessantLab/naz/pride_reanalysis/PeptideShaker.6/PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.MzidCLI -in $x -output_file $PWD/${x%.cpsx}.mzid -contact_first_name "Nazrath" -contact_last_name "Nawaz" -contact_email "nazrath.nawaz@yahoo.de" -contact_address "Fogg Building" -organization_name "QMUL" -organization_email "m.n.mohamednawaz@qmul.ac.uk" -organization_address  "Mile end road, London"
   
   done
 
@@ -73,6 +78,6 @@ done
 
 
 
-mail -s "Apocrita run completed" nazrath.nawaz@yahoo.de <<< "exported protein results (13) and filtered"
+# mail -s "Apocrita run completed" nazrath.nawaz@yahoo.de <<< "exported protein results (13) and filtered"
 
 

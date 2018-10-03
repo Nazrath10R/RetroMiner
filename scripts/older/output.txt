@@ -1,0 +1,24 @@
+Script started on Tue Dec 19 18:28:51 2017
+mkdir: cannot create directory `PXD002211': File exists
+
+Folder for download created
+
+
+Fetching Data from PRIDE through RESTful API
+
+
+Project: PXD002211
+
+
+Starting file download...
+
+
+                         (0%)██                      (10%)████                    (20%)██████                  (30%)████████                (40%)██████████              (50%)████████████            (60%)██████████████          (70%)████████████████        (80%)██████████████████      (90%)████████████████████   (100%)
+
+
+rm: cannot remove `json.out': No such file or directory
+rm: cannot remove `download.out': No such file or directory
+rm: cannot remove `links.sh': No such file or directory
+rm: cannot remove `files.json': No such file or directory
+gzip: HUVEC_IL1b1a_sn.pride.mgf already exists; do you wish to overwrite (y or n)? 
+Script done on Tue Dec 19 21:10:11 2017

@@ -12,13 +12,13 @@
 # sh API_parameters.sh PXD003271
 #============================================================#
 
-DIR=/data/SBCS-BessantLab/naz
+DIR=/data/SBCS-BessantLab/naz/pride_reanalysis
 
 PXD=$1
 
 #------------------------------------------------------------#
 
-cd $DIR/pride_reanalysis/inputs
+cd $DIR/inputs
 mkdir $PXD
 cd $PXD
 
@@ -35,10 +35,9 @@ echo "Fetching Data from PRIDE through RESTful API"
 echo
 echo "Project: $PXD"
 echo
-echo
 
 ## File API
-wget -O files.json https://www.ebi.ac.uk:443/pride/ws/archive/file/list/project/$PXD 2> files.out
+wget -O files.json https://www.ebi.ac.uk:443/pride/ws/archive/file/list/project/$PXD --no-check-certificate 2> files.out
 
 # ## extract mzid links using json processor
 # jq '.list[] | select(.downloadLink | contains(".mzid") ) | .downloadLink ' $PXD > links.sh
@@ -46,7 +45,7 @@ jq '.list[] | select(.downloadLink | contains(".mzid") ) | .downloadLink ' files
 
 
 ## Project API
-wget -O metadata.json https://www.ebi.ac.uk:443/pride/ws/archive/project/$PXD 2> metadata.out
+wget -O metadata.json https://www.ebi.ac.uk:443/pride/ws/archive/project/$PXD --no-check-certificate 2> metadata.out
 
 Pub_date=$(jq '.submissionDate' metadata.json | sed 's/ /_/g')
 Sample_Protocol=$(jq '.sampleProcessingProtocol' metadata.json | sed 's/ /_/g')
@@ -65,7 +64,7 @@ fi
 
 ## Assay API
 
-wget -O assay.json https://www.ebi.ac.uk:443/pride/ws/archive/assay/list/project/$PXD 2> assay.out
+wget -O assay.json https://www.ebi.ac.uk:443/pride/ws/archive/assay/list/project/$PXD --no-check-certificate  2> assay.out
 
 # jq '.list[0].diseases[]' assay.json
 # jq '.list[0].species[]' assay.json
@@ -95,6 +94,7 @@ echo
 echo
 rm *.mgf 2> /dev/null
 rm *.MGF 2> /dev/null
+echo "unzipping files..."
 gunzip *.gz 2> /dev/null
 echo "all files downloaded"
 echo
@@ -105,8 +105,8 @@ echo "Starting R parameter parsing"
 echo
 echo
 # module load R/3.3.1_with_lib
-module load R/3.3.2
-Rscript $DIR/pride_reanalysis/pride_parameters/mzid_parameters_v2.R
+# module load R/3.3.2
+Rscript $DIR/scripts/src/mzid_parameters_v2.R
 echo
 echo
 echo "parameter parsed"

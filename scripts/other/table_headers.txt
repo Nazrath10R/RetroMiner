@@ -1,0 +1,32 @@
+Main Accession
+Description
+Descriptions
+Ensembl Gene ID
+Gene Name
+Chromosome
+GO Accession
+GO Description
+MW [kDa]
+Possible Coverage [%]
+Coverage [%]
+Confident Coverage [%]
+Non-Enzymatic
+Spectrum Counting
+Confidently Localized Modification Sites
+# Confidently Localized Modification Sites
+Ambiguously Localized Modification Sites
+#Ambiguously Localized Modification Sites
+Confident Phosphosites
+Ambiguous Phosphosites
+Protein Inference
+#Validated Peptides
+#Peptides
+#Unique
+#Validated Unique
+#Unique to Group
+#Validated Unique to Group
+#Validated PSMs
+#PSMs
+Confidence [%]
+Decoy
+Validation
