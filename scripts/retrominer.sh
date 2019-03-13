@@ -206,7 +206,7 @@ Total Run-time for this Re-Analysis: $TIME"
 
 echo "email notification sent!"
 echo
-sh counter.sh
+sh $SCRIPTS/counter.sh
 
 #######################################################
 
