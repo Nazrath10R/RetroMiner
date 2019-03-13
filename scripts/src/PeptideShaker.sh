@@ -84,7 +84,7 @@ if [ -f $DIR/inputs/$PXD/replicates.txt ];
       echo
       cd $DIR/PeptideShaker.6/
       echo
-      nice -n 20 java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.PeptideShakerCLI \
+      nice -n 20 java -Xmx200G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.PeptideShakerCLI \
       -experiment $EXPERIMENT -sample $SAMPLE_NUMBER -replicate $REPLICATE_NUMBER \
       -identification_files $OUTPUT_FOLDER/run_$x/ \
       -spectrum_files $INPUT_FILE -id_params $PARAMETERS -out $OUTPUT_FOLDER/$x.cpsx \
@@ -136,7 +136,7 @@ else
       echo
       cd $DIR/PeptideShaker.6/
       echo
-      nice -n 20 java -Xmx100G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.PeptideShakerCLI -experiment $EXPERIMENT -sample $x -replicate $REPLICATE -identification_files $OUTPUT_FOLDER/sample_$x/ -spectrum_files $INPUT_FILE -id_params $PARAMETERS -out $OUTPUT_FOLDER/$x.cpsx -threads $THREADS
+      nice -n 20 java -Xmx200G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.PeptideShakerCLI -experiment $EXPERIMENT -sample $x -replicate $REPLICATE -identification_files $OUTPUT_FOLDER/sample_$x/ -spectrum_files $INPUT_FILE -id_params $PARAMETERS -out $OUTPUT_FOLDER/$x.cpsx -threads $THREADS
       echo
 
       if [ ! -f $OUTPUT_FOLDER/$x.cpsx ];

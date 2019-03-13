@@ -16,11 +16,13 @@
 #============================================================#
 
 DIR=/data/SBCS-BessantLab/naz/pride_reanalysis
-SCRIPTS=$DIR/pride_reanalysis/scripts/src
+SCRIPTS=$DIR/scripts/src
+ARCHIVE=$DIR/z_archive
 
 #============================================================#
 
 PXD=$1
+# --pride or -p for pride.mgf files
 
 #------------------------------------------------------------#
 #                                                            #
@@ -32,14 +34,14 @@ PXD=$1
 ####          PRIDE parameters extraction          ####
 #######################################################
 
-sh $SCRIPTS/API_parameters.sh $PXD
+# sh $SCRIPTS/API_parameters.sh $PXD
 
 
 #######################################################
 ####            PRIDE API Data download            ####
 #######################################################
 
-sh $SCRIPTS/API_data.sh $PXD
+sh $SCRIPTS/API_data.sh $PXD $2
 
 #######################################################
 ####          Experimental Design parsing          ####
@@ -49,6 +51,15 @@ sh $SCRIPTS/API_data.sh $PXD
 # module load R/3.3.2
 # Rscript experimental_design_parser.R --PXD "$PXD"
 # Rscript experimental_design_parser.R --PXD "PXD001694"
+
+cp $DIR/parameters/experimental_design.txt $ARCHIVE/exp_design/
+mv $ARCHIVE/exp_design/experimental_design.txt "$ARCHIVE/exp_design/experimental_design.txt.$(date)"
+
+echo
+Rscript $SCRIPTS/add_exp_design.R --PXD "$PXD"
+echo
+echo "Experimental design template added"
+echo
 
 #######################################################
 ####                Create log files               ####

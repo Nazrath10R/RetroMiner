@@ -3,6 +3,7 @@ library(ggplot2)
 library(reshape2)
 
 
+setwd("~/bessantlab/naz/RetroMiner_to_RTPEA/input/retrominer_results/combined_results/")
 input_files <-  list.files(path = ".", pattern = "*_parsed.txt")
 
 # example <- input_files[1]
@@ -20,7 +21,7 @@ colnames(table) <- c("Dataset","Disease","Tissue","Sample","Replicate","ORF1p","
 
 
 for(i in 1:length(input_files)) {
-
+  print(i)
   tab <- read.table(input_files[i], sep="\t", header=TRUE)
   table <- rbind(table, tab)
 
@@ -64,12 +65,14 @@ difference_table$protein[(1+orf1p_length):(orf1p_length+orf2p_length)] <- rep("O
 difference_table$score <- as.numeric(difference_table$score)
 
 
-ggplot(difference_table, aes(x = protein, y = score)) +
+bla <- ggplot(difference_table, aes(x = protein, y = score)) +
         geom_boxplot(fill = "steelblue") + 
         ggtitle("Difference between LINE-1 protein confidence scores \n n(ORF1p) = 16 \t n(ORF2p) = 34") +
         theme_bw() + geom_jitter() 
 
 
+plotly_graph <- plotly::ggplotly(bla)
+plotly_graph
 
 par(mfrow=c(1,1))
 
@@ -147,12 +150,13 @@ ggplot(two_var_table, aes(score, fill=variant)) +
  geom_density(alpha = 0.2) + ggtitle("LINE-1 variant smoothed density plot")
 
 
-ggplot(two_var_table, aes(score, fill=variant)) +
+more_bla <- ggplot(two_var_table, aes(score, fill=variant)) +
  geom_histogram(bins=80, alpha = 0.35) 
 
 
 
-
+plotly_graph <- plotly::ggplotly(more_bla)
+plotly_graph
 
 
 
@@ -208,13 +212,14 @@ x <- melt(confidences)
 
 x$confidence <- as.numeric(as.character(x$confidence))
 
-ggplot(x, aes(x=seq(1,nrow(x),1) ,y=confidence, color=protein)) +
-  geom_point() +
-  scale_y_continuous(breaks=seq(0, 100, 10)) +
-  theme(axis.title.x = element_blank())
-  ggtitle("confidence scores for identified proteins")
+confidence_distr_plot <-
+  ggplot(x, aes(x=seq(1,nrow(x),1) ,y=confidence, color=protein)) +
+    geom_point() +
+    scale_y_continuous(breaks=seq(0, 100, 10)) +
+    theme(axis.title.x = element_blank()) +
+    ggtitle("confidence scores for identified proteins")
 
-
+plotly::ggplotly(confidence_distr_plot)
 
 # ggplot(x, aes(confidence, colour=protein)) +
 #   geom_freqpoly(binwidth = 5)
@@ -232,6 +237,43 @@ ggplot(x, aes(confidence, fill=protein)) +
         axis.title=element_text(size=16,face="bold"))
 
 
+LINE_1_ident_plot <-
+  ggplot(x, aes(confidence, fill=protein)) +
+    geom_histogram(binwidth = 3)  + geom_vline(xintercept=80, color = "black", size=0.25) +
+    facet_grid(scales="free_y" , protein ~ .) + ggtitle("LINE-1 protein identifications") +
+    ylab("frequency") + xlab("combined confidence score") +
+    theme(axis.line.x = element_line(color="black", size = 0.3),
+          axis.line.y = element_line(color="black", size = 0.3),
+          plot.title = element_text(hjust = 0.5, size = 18),
+          axis.text=element_text(size=14), legend.text=element_text(size=12),
+          legend.title=element_text(size=16),
+          axis.title=element_text(size=16,face="bold"))
+
+
+plotly::ggplotly(LINE_1_ident_plot)
+
+########################################################################################
+
+orf1p_tab_plot <- x[which(x$protein=="ORF1p"),]
+
+ggplot(x, aes(confidence, fill=protein)) +
+  # geom_histogram(binwidth = 2)  + geom_vline(xintercept=80, color = "black", size=0.25) +
+  geom_density(alpha = 0.2, adjust = 0.5) +
+  facet_grid(scales="free_y" , protein ~ .) + ggtitle("LINE-1 protein identifications") +
+  xlim(20, 100) +
+  ylab("frequency") + xlab("combined confidence score") +
+  theme(axis.line.x = element_line(color="black", size = 0.3),
+        axis.line.y = element_line(color="black", size = 0.3),
+        plot.title = element_text(hjust = 0.5, size = 18),
+        axis.text=element_text(size=14), legend.text=element_text(size=12),
+        legend.title=element_text(size=16),
+        axis.title=element_text(size=16,face="bold"))
+
+
+
+
+
+plot(density(orf1p_tab_plot$confidence,bw = 1))
 
 
 
@@ -239,13 +281,7 @@ ggplot(x, aes(confidence, fill=protein)) +
 
 
 
-
-
-
-
-
-
-
+########################################################################################
 
 
 
@@ -268,6 +304,35 @@ plot(test_values)
 test
 test_matrix <- matrix(test,length(test)/2,2,byrow = TRUE)
 test_df <- as.data.frame(test_matrix)
+as.character(unique(test_df$protein))
+colnames(test_df) <- c("protein", "confidence")
+
+
+herv_names <- read.table("~/bessantlab/naz/RetroMiner_to_RTPEA/example_files/herv_protein_names.txt",
+                header = TRUE, sep = "\t")
+
+
+#### NEED TO BE FIXED
+for(x in 1:length(herv_names)) {
+  test_df$protein <-
+    gsub(
+      as.character(herv_names$accession[x]), as.character(herv_names$protein_name[x]),
+      test_df$protein
+       )
+}
+
+for(x in 1:nrow(test_df)) {
+  # test_df$protein[x] <-
+    herv_names[which(herv_names==test_df$protein[x]),]
+    
+}
+
+
+
+
+
+
+
 
 colnames(test_df) <- c("protein", "confidence")
 test_df
@@ -276,11 +341,16 @@ test_df_melted <- melt(test_df)
 test_df_melted$confidence <- as.numeric(as.character(test_df_melted$confidence))
 
 
-ggplot(test_df_melted, aes(x=seq(1,nrow(test_df_melted),1) ,y=confidence, color=protein)) +
-  geom_point() +
-  scale_y_continuous(breaks=seq(0, 100, 10)) +
-  theme(axis.title.x = element_blank()) +
-  ggtitle("confidence scores for identified HERV proteins")
+HERV_plot <-
+  ggplot(test_df_melted, aes(x=seq(1,nrow(test_df_melted),1) ,y=confidence, color=protein)) +
+    geom_point() +
+    scale_y_continuous(breaks=seq(0, 100, 10)) +
+    theme(axis.title.x = element_blank()) +
+    ggtitle("confidence scores for identified HERV proteins")
+
+
+plotly::ggplotly(HERV_plot)
+
 
 
 

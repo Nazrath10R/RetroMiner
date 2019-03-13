@@ -22,13 +22,32 @@ SCRIPTS=$DIR/scripts/src
 #                        Parameters                          #
 #------------------------------------------------------------#
 
-PXD=$1
-ANALYSIS=$2
-THREADS=$3
+#### Interactive mode ####
+
+if [[ ( $1 == "--interactive") ||  $1 == "-i" ]] 
+then
+  echo
+  echo "Run Interactive mode"
+  echo
+  echo "Enter PXD:"
+  read PXD
+  echo
+  echo "Enter ANALYSIS:"
+  read ANALYSIS
+  echo
+  echo "Enter THREADS:"
+  read THREADS
+  echo
+
+#### Normal mode ####  
+
+else 
+  PXD=$1
+  ANALYSIS=$2
+  THREADS=$3
+fi
 
 #------------------------------------------------------------#
-
-############################################################
 
 #### Calculate Total runtime ####
 
@@ -52,12 +71,38 @@ function print_time {
   fi
 }
 
-## Start clock time
-START=$(date +%s)
 
-############################################################
+#### Display Usage ####
+
+display_usage() {
+  echo  
+  echo -e "Run:\nsh retrominer.sh [PXD00xxxx] [ANALYSIS] [THREADS]\n"
+  echo
+  echo -e "PXD00xxxx = PRIDE Dataset identifier"
+  echo -e "ANALYSIS  = 1 (frontend5)\n\t    2 (frontend6)\n\t    3 (sm11)"
+  echo -e "THREADS   = cpu cores" 
+  echo
+} 
+ 
+# check whether user had supplied -h or --help . If yes display usage 
+if [[ ( $1 == "--help") ||  $1 == "-h" ]] 
+then 
+  display_usage
+  exit 0
+fi 
+
+# if less than three arguments supplied, display usage 
+if [[ ( $1 != "--help") &&  $1 != "-h" && ( $1 != "--interactive") && 
+  $1 != "-i" && $# -le 2 ]] 
+then 
+  display_usage
+  exit 1
+fi 
+
+#------------------------------------------------------------#
+
 echo
-cat logo.txt
+cat $DIR/images/logo.txt
 echo
 echo "Starting Re-Analysis Pipeline..."
 echo
@@ -73,6 +118,10 @@ echo "Please wait for RetroMiner to start..."
 echo
 sh $SCRIPTS/loading.sh 4
 echo
+Rscript $SCRIPTS/log.R --PXD "$PXD" --IN "running" >/dev/null
+
+## Start clock time
+START=$(date +%s)
 
 #######################################################
 ####                  Search GUI                   ####
@@ -146,8 +195,9 @@ echo
 TIME=`print_time $START`
 echo "Total Run-time for this Re-Analysis:"
 echo $TIME
-echo
+
 Rscript $SCRIPTS/log.R --PXD "$PXD" --IN "retromined"
+echo
 
 ## e-mail notification
 mail -s "Apocrita run completed" nazrath.nawaz@yahoo.de <<< "Dataset re-analysed: $PXD
@@ -156,6 +206,7 @@ Total Run-time for this Re-Analysis: $TIME"
 
 echo "email notification sent!"
 echo
+sh counter.sh
 
 #######################################################
 

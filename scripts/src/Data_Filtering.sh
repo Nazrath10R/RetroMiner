@@ -22,7 +22,9 @@ DIR=/data/SBCS-BessantLab/naz/pride_reanalysis
 
 PXD=$1
 
-mkdir $DIR/reports/$PXD/
+if [ ! -d "$DIR/reports/$PXD/" ]; then
+  mkdir $DIR/reports/$PXD/
+fi
 
 SAMPLE=`awk -F: '{print v $1}' $DIR/inputs/$PXD/samples.txt`
 INPUT_FILE="$DIR/inputs/$PXD/"

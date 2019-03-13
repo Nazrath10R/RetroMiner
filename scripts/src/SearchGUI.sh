@@ -80,7 +80,7 @@ if [ "$ANALYSIS" -eq 2 ]; then
 	# echo "SearchGUI Parallelisation"
 	# echo
 
-  ssh apoc6 "cd $DIR/scripts/ ;
+  ssh apoc6 "cd $DIR/scripts/src ;
   sh SearchGUI_module_1.sh '$PXD' '$INPUT_FILE' '$PARAMETERS' '$EXPERIMENT' '$SAMPLE' '$ANALYSIS' '$REPLICATE' '$OUTPUT_FOLDER' '$THREADS'"
 
   # # cd $DIR/scripts/
@@ -111,7 +111,7 @@ if [ "$ANALYSIS" -eq 3 ]; then
   echo
   echo "Starting SearchGUI for X!Tandem and Comet..."
   echo
-  ssh sm11 "cd $DIR/scripts/ ;
+  ssh sm11 "cd $DIR/scripts/src ;
   sh SearchGUI_module_1.sh '$PXD' '$INPUT_FILE' '$PARAMETERS' '$EXPERIMENT' '$SAMPLE' '$ANALYSIS' '$REPLICATE' '$OUTPUT_FOLDER' '$THREADS'"
   echo
   echo

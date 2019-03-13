@@ -53,7 +53,7 @@ for x in $FILES; do
 #   # java -cp $DIR/PeptideShaker.6/PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.MzidCLI -in $x -output_file $PWD/${x%.cpsx}.mzid -contact_first_name "Nazrath" -contact_last_name "Nawaz" -contact_email "nazrath.nawaz@yahoo.de" -contact_address "Fogg Building" -organization_name "QMUL" -organization_email "m.n.mohamednawaz@qmul.ac.uk" -organization_address  "Mile end road, London"
 
 done
-
+echo
 echo "reports produced for $PXD"
 
 
@@ -74,11 +74,16 @@ for z in $FILES2; do
 done
 
 cd $DIR/results
-mkdir $PXD  
-find $DIR/reports/$PXD -name \*_filtered.txt -exec cp {} /data/SBCS-BessantLab/naz/results/$PXD \;
+
+
+if [ ! -d "$PXD" ]; then
+  mkdir $PXD
+fi
+
+find $DIR/reports/$PXD -name \*_filtered.txt -exec cp {} $DIR/results/$PXD \;
 
 echo "reports filtered for $PXD"
-
+echo
 
 cd $DIR/scripts
 
