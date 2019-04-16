@@ -5,7 +5,7 @@ A pipeline to reanalyse public PRIDE datasets
 ----------------
 ## Background
 
-[PRIDE](https://www.ebi.ac.uk/pride/archive) (PRoteomics IDEntifications) is a data repository for mass spectrometry derived proteomics data
+[PRIDE](https://www.ebi.ac.uk/pride/archive) (PRoteomics IDEntifications) is a data repository for mass-spectrometry derived proteomics data
 
 Using the existing proteomics tools SearchGUI and PeptideShaker,
 this pipeline utilises a generic, reusable workflow in order to reanalyse PRIDE datasets and identify proteins.
@@ -15,8 +15,8 @@ this pipeline utilises a generic, reusable workflow in order to reanalyse PRIDE 
 
 ### Softwares 
 
-* SearchGUI - http://compomics.github.io/projects/searchgui.html
-* PeptideShaker - http://compomics.github.io/projects/peptide-shaker.html
+* ***SearchGUI*** - http://compomics.github.io/projects/searchgui.html
+* ***PeptideShaker*** - http://compomics.github.io/projects/peptide-shaker.html
 
 | **Platform** | **Languages** | **others**           |
 |----------|-----------|------------------|
@@ -25,14 +25,24 @@ this pipeline utilises a generic, reusable workflow in order to reanalyse PRIDE 
 
 
 ----------------
-## How to install
+## Installation
 
 ### create an installation script
 
-1. clone repository
-2. create folder and subfolders
-3. installs packages
+1. clone repository (done)
+2. create folder and subfolders (done)
+3. install packages
 4. performs checks
+
+
+### Prerequisite
+
+<span style="color:blue">Search Database</span>
+
+- download proteome of species to analyse
+- add any protein sequences of interest
+- generate reverse sequences through searchgui
+
 
 ----------------
 # How to use RetroMiner
@@ -40,7 +50,7 @@ this pipeline utilises a generic, reusable workflow in order to reanalyse PRIDE 
 <!-- ![alt text](https://github.com/Nazrath10R/RetroMiner_to_RTPEA/blob/master/images/RetroMiner%20to%20RTPEA.png)
  -->
 
-flowchart
+### flowchart
 
 In images/reanalysis_log.txt there is a file that records checkpoints of the ongoing reanalysis process.
 
@@ -53,15 +63,7 @@ An example is shown below:
 | PXD00xxxx | y          | y           | y            | y          | n         | n         | interesting dataset | Study et al. |
 
 
-### Prerequisite
-
-<span style="color:blue">Search Database</span>
-
-- download proteome of species to analyse
-- add any protein sequences of interest
-- generate reverse sequences through searchgui
-
-
+----------------
 ### 1. Download dataset from PRIDE
 
 <!-- <span style="color:blue">Apocrita</span> -->
