@@ -2,6 +2,7 @@
 
 A pipeline to reanalyse public PRIDE datasets
 
+----------------
 ## Background
 
 [PRIDE](https://www.ebi.ac.uk/pride/archive) (PRoteomics IDEntifications) is a data repository for mass spectrometry derived proteomics data
@@ -17,28 +18,23 @@ this pipeline utilises a generic, reusable workflow in order to reanalyse PRIDE 
 * SearchGUI - http://compomics.github.io/projects/searchgui.html
 * PeptideShaker - http://compomics.github.io/projects/peptide-shaker.html
 
-### Platform
-- Linux
-- Mac
-
-### Languages
-- bash
-- R
-
-### others
-- jq for bash
-- ssh keys for HPC
+| **Platform** | **Languages** | **others**           |
+|----------|-----------|------------------|
+| Linux    | bash      | jq for bash      |
+| Mac      | R         | ssh keys for HPC |
 
 
+----------------
 ## How to install
 
-- create an installation script
+### create an installation script
+
 1. clone repository
 2. create folder and subfolders
 3. installs packages
 4. performs checks
 
-
+----------------
 # How to use RetroMiner
 
 <!-- ![alt text](https://github.com/Nazrath10R/RetroMiner_to_RTPEA/blob/master/images/RetroMiner%20to%20RTPEA.png)
@@ -87,8 +83,7 @@ are downloaded and deleted.
 
 A template of the experimental design table is added to the parameters/experimental_design.txt file to fill in for the next section.
 
-
-
+----------------
 ### 2. Fill experimental design
 
 <!-- <span style="color:blue">Apocrita</span> -->
@@ -102,7 +97,7 @@ Then run the script to set up the files for analysis appropriately:
 sh experimental_design.sh PXD00xxxx
 ```
 
-
+----------------
 ### 3. Add MS parameters
 
 Identify all the MS parameters needed for the analysis such as fragment tolerance, parent tolerance, fixed and variable modifications etc.
@@ -116,8 +111,7 @@ Then run the script to create a parameter file:
 sh parameters.sh PXD00xxxx
 ```
 
-
-
+----------------
 ### 4. Run RetroMiner
 
 <span style="color:blue"><!-- DropBox --></span>
