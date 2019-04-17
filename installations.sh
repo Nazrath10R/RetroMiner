@@ -1,7 +1,7 @@
 
-git clone https://github.com/Nazrath10R/Pride_Reanalysis
+git clone https://github.com/Nazrath10R/RetroMiner
 
-cd Pride_Reanalysis
+cd RetroMiner
 
 mkdir human_proteome
 # add proteome
