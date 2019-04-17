@@ -14,3 +14,5 @@ mkdir results
 mkdir sizes
 
 # wget https://www.uniprot.org/proteomes/UP000005640
+
+Rscript scripts/src/r_installations.R
