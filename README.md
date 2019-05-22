@@ -20,8 +20,8 @@ this pipeline utilises a generic, reusable workflow in order to reanalyse PRIDE 
 
 | **Platform** | **Languages** | **others**           |
 |----------|-----------|------------------|
-| Linux    | bash      | jq for bash      |
-| Mac      | R         | ssh keys for HPC |
+| Linux    | bash      | [jq](https://stedolan.github.io/jq/) for bash      |
+| Mac      | R         | [ssh keys](https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server) for HPC |
 
 
 ----------------
@@ -31,7 +31,7 @@ this pipeline utilises a generic, reusable workflow in order to reanalyse PRIDE 
 
 1. clone repository (done)
 2. create folder and subfolders (done)
-3. install packages
+3. install packages (done)
 4. performs checks
 
 
@@ -39,9 +39,10 @@ this pipeline utilises a generic, reusable workflow in order to reanalyse PRIDE 
 
 <span style="color:blue">Search Database</span>
 
-- download proteome of species to analyse
+- download SearchGUI and PeptideShaker into the repsectively named folders
+- download proteome of species to analyse into human_proteome folder
 - add any protein sequences of interest
-- generate reverse sequences through searchgui
+- generate reverse sequences through searchgui 
 
 
 ----------------
