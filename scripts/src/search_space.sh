@@ -7,7 +7,7 @@ read new_sequences
 
 if [[ ( $new_sequences == "y") ||  $new_sequences == "Y" ]] 
 then
-	cd ../../human_proteome
+	cd human_proteome
 	echo
 	echo "please add a fasta file of your sequences to the human_proteome folder"
 	echo "enter y when ready"

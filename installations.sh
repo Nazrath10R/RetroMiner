@@ -38,13 +38,13 @@ echo -en "\033[0m"
 # mv PeptideShaker-1.14.6 PeptideShaker.6 
 # chmod -R 770 PeptideShaker.6
 
-echo "move config file"
+echo "moved config file"
 # cp .peptideshaker $HOME/
 
 echo -en "\033[34m"
 echo "Downloading Human reference proteome"
 echo -en "\033[0m"
-wget "https://www.uniprot.org/uniprot/?include=false&format=fasta&force=true&query=proteome:UP000005640" > human_proteome.fasta
+wget "https://www.uniprot.org/uniprot/?include=false&format=fasta&force=true&query=proteome:UP000005640" > human_proteome/human_proteome.fasta
 
 echo -en "\033[34m"
 echo "Setting up search space"
