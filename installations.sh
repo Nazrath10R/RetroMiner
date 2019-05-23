@@ -68,6 +68,10 @@ sleep 3
 
 sh scripts/src/search_space.sh
 
+if  [ $? == 1 ]; then
+	sh scripts/src/search_space.sh  
+	# exit 0
+fi
 
 echo
 echo -en "\033[34m"

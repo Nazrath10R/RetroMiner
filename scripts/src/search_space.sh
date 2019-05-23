@@ -60,8 +60,7 @@ elif [[ ( $new_sequences == "n") ||  $new_sequences == "N" ]]
 else 
 	echo "input not identified"
 	sleep 1
-	echo "please run the following line and re-enter [y|n]"
+	echo "please re-enter [y|n]"
 	echo
-	echo "sh scripts/src/search_space.sh"
-	echo
+	quit(status=1)
 fi
