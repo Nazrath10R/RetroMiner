@@ -35,14 +35,16 @@ then
 		echo
 		echo "generating reversed sequences for target-decoy approach"
 		echo
+		sleep 1
 		
 		# reversed sequence generation through SG
-		java -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.FastaCLI \
+		java -cp ../SearchGUI.5/SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.FastaCLI \
 		-in human_variants_proteome.fasta -decoy
 
 		# check if database was generated
-		if ls human_proteome/human_variants_proteome.fasta 1> /dev/null 2>&1; then
+		if ls human_variants_proteome.fasta 1> /dev/null 2>&1; then
 			echo "search database generated: human_variants_proteome.fasta"
+			sleep 3
 		else
 			echo "search database failed"
 		fi
@@ -56,5 +58,10 @@ elif [[ ( $new_sequences == "n") ||  $new_sequences == "N" ]]
 	then
 	echo "no new sequences"
 else 
-	echo "?"
+	echo "input not identified"
+	sleep 1
+	echo "please run the following line and re-enter [y|n]"
+	echo
+	echo "sh scripts/src/search_space.sh"
+	echo
 fi
