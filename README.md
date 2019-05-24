@@ -23,9 +23,9 @@ will be downloaded with the installation
 ## Prerequisites
 
 | **Platform** | **Languages** | **source**  |	**info**	|	
-|----------|-----------|------------------|----------|
-| Linux    | bash      | [jq](https://stedolan.github.io/jq/) for bash      | 'sudo apt-get install jq' (linux) or 'brew install jq'	|
-| Mac      | R         | [ssh keys](https://www.digitalocean.com/community/tutorials/	how-to-configure-ssh-key-based-authentication-on-a-linux-server) for HPC |	follow instructions for your own HPC	|
+|----------|--------|-------------|--------------|
+| Linux    | bash   | [jq](https://stedolan.github.io/jq/) for bash      | 'sudo apt-get install jq' (linux) or 'brew install jq'	|
+| Mac      | R      | [ssh_keys](https://www.digitalocean.com/community/tutorials/	how-to-configure-ssh-key-based-authentication-on-a-linux-server) for HPC |	follow instructions for your own HPC	|
 
 
 ----------------
