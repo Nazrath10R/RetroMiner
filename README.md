@@ -25,7 +25,7 @@ will be downloaded with the installation
 | **Platform** | **Languages** | **source**  |	**info**	|	
 |----------|--------|-------------|--------------|
 | Linux    | bash   | [jq](https://stedolan.github.io/jq/) for bash      | 'sudo apt-get install jq' (linux) or 'brew install jq'	|
-| Mac      | R      | [ssh_keys](https://www.digitalocean.com/community/tutorials/	how-to-configure-ssh-key-based-authentication-on-a-linux-server) for HPC |	follow instructions for your own HPC	|
+| Mac      | R      | [ssh_keys](https://www.digitalocean.com/community/tutorials/-to-configure-ssh-key-based-authentication-on-a-linux-server) for HPC |	follow instructions for your own HPC	|
 
 
 ----------------
@@ -129,7 +129,7 @@ where ANALYSIS = 1 (frontend5) ; 2 (frontend6) ; 3 (sm11)
 
 and THREADS = number of cpu cores to use
 
-Please be considerate when using shared nodes and use htop to monitor other users and jobs.
+Please be considerate when using shared nodes and use [htop](https://hisham.hm/htop/) to monitor other users and jobs.
 
 If no arguments are input, the usage is displayed in the terminal (or -h is used)
 Using -i, loads up the interactive version guiding you through the input arguments
