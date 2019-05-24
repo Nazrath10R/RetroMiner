@@ -68,9 +68,8 @@ sleep 3
 
 sh scripts/src/search_space.sh
 
-if  [ $? == 1 ]; then
+if  [ $? == 0 ]; then
 	sh scripts/src/search_space.sh  
-	# exit 0
 fi
 
 echo
@@ -87,6 +86,23 @@ cd ..
 echo 
 echo -en "\033[34m"
 echo "Final checks..."
+
+if ! [ -x "$(command -v jq)" ]; then
+  echo
+  echo "Please install jq"
+  echo
+  echo "installation instructions found at:"
+  echo
+  echo "jq homepage - https://stedolan.github.io/jq/" >&2
+  echo
+  echo
+  exit 1
+fi
+
+echo
+echo "set up ssh keys for High-Performance computing"
+echo
+
 # need a check script
 echo -en "\033[0m"
 echo

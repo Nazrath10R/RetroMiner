@@ -18,31 +18,31 @@ this pipeline utilises a generic, reusable workflow in order to reanalyse PRIDE 
 * ***SearchGUI*** - http://compomics.github.io/projects/searchgui.html
 * ***PeptideShaker*** - http://compomics.github.io/projects/peptide-shaker.html
 
-| **Platform** | **Languages** | **others**           |
+will be downloaded with the installation
+
+## Prerequisites
+
+| **Platform** | **Languages** | **source**  |	**info**	|	
 |----------|-----------|------------------|
-| Linux    | bash      | [jq](https://stedolan.github.io/jq/) for bash      |
-| Mac      | R         | [ssh keys](https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server) for HPC |
+| Linux    | bash      | [jq](https://stedolan.github.io/jq/) for bash      | 'sudo apt-get install jq' (linux) or 'brew install jq'	|
+| Mac      | R         | [ssh keys](https://www.digitalocean.com/community/tutorials/	how-to-configure-ssh-key-based-authentication-on-a-linux-server) for HPC |	follow instructions for your own HPC	|
 
 
 ----------------
 ## Installation
 
-### create an installation script
+The following script will download and install all components apart from the above listed requirements
 
-1. clone repository (done)
-2. create folder and subfolders (done)
-3. install packages (done)
-4. performs checks
+sh installation.sh
 
-
-### Prerequisite
+### What the installation script does
 
 <span style="color:blue">Search Database</span>
 
 - download SearchGUI and PeptideShaker into the repsectively named folders
-- download proteome of species to analyse into human_proteome folder
-- add any protein sequences of interest
-- generate reverse sequences through searchgui 
+- downloads human proteome ready to analyse into human_proteome folder
+- add any protein sequences of interest with user prompt
+- generate reverse sequences through searchgui for target decoy approach
 
 
 ----------------

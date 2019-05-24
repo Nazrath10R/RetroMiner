@@ -8,10 +8,11 @@
 #============================================================#
 
 echo
+echo "#============================================================#"
 echo "Do you wish to add your own sequences to the search space?"
 echo "Enter y or n"
-
 read new_sequences
+echo "#============================================================#"
 
 ## if there are sequences to be added
 if [[ ( $new_sequences == "y") ||  $new_sequences == "Y" ]] 
@@ -33,7 +34,7 @@ then
 		awk '{print}' human_proteome.fasta $new_fasta > human_variants_proteome.fasta
 		echo "search space expanded to include $new_fasta"
 		echo
-		echo "generating reversed sequences for target-decoy approach"
+		echo "generating reversed sequences for target-decoy approach..."
 		echo
 		sleep 1
 		
@@ -43,8 +44,12 @@ then
 
 		# check if database was generated
 		if ls human_variants_proteome.fasta 1> /dev/null 2>&1; then
+
+			echo "#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 			echo "search database generated: human_variants_proteome.fasta"
+			echo "#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 			sleep 3
+
 		else
 			echo "search database failed"
 		fi
@@ -59,8 +64,9 @@ elif [[ ( $new_sequences == "n") ||  $new_sequences == "N" ]]
 	echo "no new sequences"
 else 
 	echo "input not identified"
+	echo
 	sleep 1
 	echo "please re-enter [y|n]"
 	echo
-	quit(status=1)
+	exit 0
 fi
