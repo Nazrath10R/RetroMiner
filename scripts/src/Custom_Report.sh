@@ -2,7 +2,7 @@
 
 # java -Xmx200G -cp PeptideShaker-1.14.6.jar eu.isas.peptideshaker.cmd.ReportCLI -in "$DIR/outputs/PXD004624/1.cpsx" -out_reports "$DIR/reports/PXD004624/" -reports 9
 
-DIR=`find . -name "retrominer_path.txt" -type f -exec cat {} +`
+DIR=`find .. -name "retrominer_path.txt" -type f -exec cat {} +`
 # DIR=/data/SBCS-BessantLab/naz/pride_reanalysis
 
 # cd $DIR/outputs/

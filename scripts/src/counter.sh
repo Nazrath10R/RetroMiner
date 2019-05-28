@@ -1,5 +1,5 @@
 
-DIR=`find . -name "retrominer_path.txt" -type f -exec cat {} +`
+DIR=`find .. -name "retrominer_path.txt" -type f -exec cat {} +`
 
 Rscript $DIR/scripts/src/counter.R
 

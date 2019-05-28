@@ -15,7 +15,7 @@
 # sh retrominer.sh PXD000651 1 20
 #============================================================#
 
-DIR=`find . -name "retrominer_path.txt" -type f -exec cat {} +`
+DIR=`find .. -name "retrominer_path.txt" -type f -exec cat {} +`
 # DIR=/data/SBCS-BessantLab/naz/pride_reanalysis
 SCRIPTS=$DIR/scripts/src
 
@@ -80,7 +80,7 @@ display_usage() {
   echo -e "Run:\nsh retrominer.sh [PXD00xxxx] [ANALYSIS] [THREADS]\n"
   echo
   echo -e "PXD00xxxx = PRIDE Dataset identifier"
-  echo -e "ANALYSIS  = 1 (frontend5)\n\t    2 (frontend6)\n\t    3 (sm11)"
+  echo -e "ANALYSIS  = 1 (frontend5)\n\t    2 (frontend6)\n\t    3 (sm11)\n\t    local (run on this machine)"
   echo -e "THREADS   = cpu cores" 
   echo
 } 

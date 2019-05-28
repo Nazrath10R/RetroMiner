@@ -12,7 +12,7 @@
 # sh SearchGUI.sh PXD003417 1 36
 #============================================================#
 
-DIR=`find . -name "retrominer_path.txt" -type f -exec cat {} +`
+DIR=`find .. -name "retrominer_path.txt" -type f -exec cat {} +`
 # DIR=/data/SBCS-BessantLab/naz/pride_reanalysis
 
 # par $DIR/parameters/PXD003417.par
@@ -119,6 +119,19 @@ if [ "$ANALYSIS" -eq 3 ]; then
   echo
 fi
 
+
+if [ "$ANALYSIS" -eq "local" ]; then
+  echo
+  echo "Running RetroMiner locally"
+  echo
+  echo "Starting SearchGUI for X!Tandem and Comet..."
+  echo
+  cd $DIR/scripts/src ;
+  sh SearchGUI_module_1.sh $PXD $INPUT_FILE $PARAMETERS $EXPERIMENT $SAMPLE $ANALYSIS $REPLICATE $OUTPUT_FOLDER $THREADS
+  echo
+  echo
+  echo
+fi
 
 
 

@@ -9,7 +9,6 @@ cat images/logo.txt
 
 # create folders
 mkdir human_proteome
-# add proteome
 mkdir inputs
 mkdir logs
 mkdir outputs
@@ -121,4 +120,4 @@ sleep 2
 echo "RetroMiner is set up!"
 echo
 
-cd scripts
+cd RetroMiner/scripts
