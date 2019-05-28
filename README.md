@@ -64,6 +64,12 @@ An example is shown below:
 | PXD00xxxx | y          | y           | y            | y          | n         | n         | interesting dataset | Study et al. |
 
 
+all scripts are in the scripts folder, so cd into the folder to start analysis
+
+```
+cd scripts
+```
+
 ----------------
 ### 1. Download dataset from PRIDE
 

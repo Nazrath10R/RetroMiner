@@ -1,5 +1,13 @@
 
-log_table <- read.table("/data/SBCS-BessantLab/naz/pride_reanalysis/images/reanalysis_log.txt",
+retrominer_path <- list.files(path = ".", pattern = "retrominer_path.txt", 
+                   recursive=TRUE, full.names=TRUE, 
+                   include.dirs=TRUE)
+
+dir <- paste(readLines(retrominer_path), collapse=" ")
+
+reanalysis_log_table <- paste(dir, "images/reanalysis_log.txt", sep = "/")
+
+log_table <- read.table(reanalysis_log_table,
  												sep = "\t", header = TRUE)
 
 

@@ -12,7 +12,10 @@
 # sh parameters.sh PXD003417
 #============================================================#
 
-DIR=/data/SBCS-BessantLab/naz/pride_reanalysis
+
+DIR=`find . -name "retrominer_path.txt" -type f -exec cat {} +`
+# DIR=/data/SBCS-BessantLab/naz/pride_reanalysis
+
 SCRIPTS=$DIR/scripts/src
 
 #------------------------------------------------------------#

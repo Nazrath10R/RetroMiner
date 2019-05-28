@@ -10,9 +10,17 @@ suppressMessages(library("argparser"))    # Argument passing
 
 ##########################################################################
 
-## Experimemental design table parser
+retrominer_path <- list.files(path = ".", pattern = "retrominer_path.txt", 
+                   recursive=TRUE, full.names=TRUE, 
+                   include.dirs=TRUE)
 
-table <- read.table("/data/SBCS-BessantLab/naz/pride_reanalysis/parameters/experimental_design.txt")
+dir <- paste(readLines(retrominer_path), collapse=" ")
+
+experimental_design_table <- paste(dir, "parameters/experimental_design.txt", sep = "/")
+
+
+## Experimemental design table parser
+table <- read.table(experimental_design_table)
 
 ##########################################################################
 

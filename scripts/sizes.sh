@@ -1,11 +1,15 @@
 #!/bin/bash
 
-cd /data/SBCS-BessantLab/naz/pride_reanalysis/outputs
+
+DIR=`find . -name "retrominer_path.txt" -type f -exec cat {} +`
+# DIR=/data/SBCS-BessantLab/naz/pride_reanalysis
+
+cd $DIR/outputs
 ls -1 > sizes.txt
 
 # PXD=PXD002211
 
-cd /data/SBCS-BessantLab/naz/pride_reanalysis/sizes
+cd $DIR/sizes
 
 # output_to_convert2.txt
 

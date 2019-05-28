@@ -12,7 +12,8 @@
 # sh SearchGUI.sh PXD003417 1 36
 #============================================================#
 
-DIR=/data/SBCS-BessantLab/naz/pride_reanalysis
+DIR=`find . -name "retrominer_path.txt" -type f -exec cat {} +`
+# DIR=/data/SBCS-BessantLab/naz/pride_reanalysis
 
 # par $DIR/parameters/PXD003417.par
 

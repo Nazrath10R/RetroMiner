@@ -1,7 +1,18 @@
 
+retrominer_path <- list.files(path = ".", pattern = "retrominer_path.txt", 
+                   recursive=TRUE, full.names=TRUE, 
+                   include.dirs=TRUE)
 
-log_table <- read.table("/data/SBCS-BessantLab/naz/pride_reanalysis/images/reanalysis_log.txt",
- 												sep = "\t", header = TRUE)
+dir <- paste(readLines(retrominer_path), collapse=" ")
+
+
+log_table <- paste(dir, "images/reanalysis_log.txt", sep = "/")
+
+experimental_design_table <- paste(dir, "parameters/experimental_design.txt", sep = "/")
+
+
+
+log_table <- read.table(log_table, sep = "\t", header = TRUE)
 
 
 # downloaded parametered exp_designed retromined
@@ -23,7 +34,7 @@ pxd_list <- log_table[which(log_table$retromined=="y"),]$pxd
 
 
 
-table <- read.table("/data/SBCS-BessantLab/naz/pride_reanalysis/parameters/experimental_design.txt")
+table <- read.table(experimental_design_table)
 
 
 

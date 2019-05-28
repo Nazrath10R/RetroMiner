@@ -3,6 +3,8 @@
 git clone https://github.com/Nazrath10R/RetroMiner
 
 cd RetroMiner
+echo $PWD > retrominer_path.txt
+
 cat images/logo.txt
 
 # create folders
@@ -15,6 +17,7 @@ mkdir parameters
 mkdir reports
 mkdir results
 mkdir sizes
+mkdir z_archive
 
 echo
 echo "folders created"
@@ -58,6 +61,7 @@ echo -en "\033[0m"
 echo
 sleep 3
 wget "https://www.uniprot.org/uniprot/?include=false&format=fasta&force=true&query=proteome:UP000005640" > human_proteome/human_proteome.fasta
+rm index.html?include=false&format=fasta&force=true&query=proteome:UP000005640
 
 echo
 echo -en "\033[34m"
@@ -95,12 +99,19 @@ if ! [ -x "$(command -v jq)" ]; then
   echo
   echo "jq homepage - https://stedolan.github.io/jq/" >&2
   echo
+  echo "Linux"
+  echo "sudo apt-get install jq"
+  echo
+  echo "Mac"
+  echo "brew install jq"
   echo
   exit 1
 fi
 
 echo
+echo "#==============================================#"
 echo "set up ssh keys for High-Performance computing"
+echo "#==============================================#"
 echo
 
 # need a check script
@@ -110,4 +121,4 @@ sleep 2
 echo "RetroMiner is set up!"
 echo
 
-
+cd scripts

@@ -10,7 +10,11 @@
 
 ####################################################################
 
-dir <- "/data/SBCS-BessantLab/naz/pride_reanalysis"
+retrominer_path <- list.files(path = ".", pattern = "retrominer_path.txt", 
+                   recursive=TRUE, full.names=TRUE, 
+                   include.dirs=TRUE)
+
+dir <- paste(readLines(retrominer_path), collapse=" ")
 
 ####################################################################
 
