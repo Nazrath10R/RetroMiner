@@ -28,7 +28,7 @@ fi
 
 # if less than three arguments supplied, display usage 
 if [[ ( $1 != "--help") &&  $1 != "-h" && ( $1 != "--interactive") && 
-  $1 != "-i" && $# -le 2 ]] 
+  $1 != "-i" && $# -le 0 ]] 
 then 
   display_usage
   exit 1

@@ -1,0 +1,7 @@
+"Accession_number" "Description" "File" "Sample" "Replicate"
+"1" "PXD003417" "healthy" "NHDF_sn_stim_1a.mgf" "1" "1"
+"2" "PXD003417" "healthy" "NHDF_sn_stim_1b.mgf" "1" "2"
+"3" "PXD003417" "adjacent" "NHDF_sn_stim_2a.mgf" "2" "1"
+"4" "PXD003417" "adjacent" "NHDF_sn_stim_2b.mgf" "2" "2"
+"5" "PXD003417" "disease" "NHDF_sn_stim_3a.mgf" "3" "1"
+"6" "PXD003417" "disease" "NHDF_sn_stim_3b.mgf" "3" "2"

@@ -44,6 +44,7 @@ sh installation.sh
 - add any protein sequences of interest with user prompt
 - generate reverse sequences through searchgui for target decoy approach
 
+after installation run chmod -R 770 RetroMiner to allow execution of all scripts 
 
 ----------------
 # How to use RetroMiner

@@ -117,7 +117,7 @@ echo
 # sleep 2
 echo "Please wait for RetroMiner to start..."
 echo
-sh $SCRIPTS/loading.sh 4
+# sh $SCRIPTS/loading.sh 4
 echo
 Rscript $SCRIPTS/log.R --PXD "$PXD" --IN "running" >/dev/null
 
@@ -133,7 +133,15 @@ echo "SearchGUI running..."
 echo -en "\033[0m"
 echo
 # nice -n 10 sh SearchGUI.sh $PXD $ANALYSIS $THREADS > $DIR/logs/$PXD/${PXD}_sg_log.txt
-nice -n 20 sh $SCRIPTS/SearchGUI.sh $PXD $ANALYSIS $THREADS |& tee $DIR/logs/$PXD/${PXD}_sg_log.txt
+
+echo $ANALYSIS
+
+if [ "$ANALYSIS" = "local" ]; then
+	sh $SCRIPTS/SearchGUI.sh $PXD $ANALYSIS $THREADS 
+else
+	sh $SCRIPTS/SearchGUI.sh $PXD $ANALYSIS $THREADS |& tee $DIR/logs/$PXD/${PXD}_sg_log.txt
+fi
+
 echo
 
 
@@ -152,7 +160,7 @@ echo -en "\033[34m"
 echo "PeptideShaker running..."
 echo -en "\033[0m"
 # nice -n 10 sh PeptideShaker.sh $PXD $THREADS > $DIR/logs/$PXD/${PXD}_ps_log.txt
-nice -n 20 sh $SCRIPTS/PeptideShaker.sh $PXD $THREADS |& tee $DIR/logs/$PXD/${PXD}_ps_log.txt
+sh $SCRIPTS/PeptideShaker.sh $PXD $THREADS |& tee $DIR/logs/$PXD/${PXD}_ps_log.txt
 echo
 
 if ls $DIR/outputs/$PXD/*cpsx 1> /dev/null 2>&1; then
@@ -171,7 +179,7 @@ echo -en "\033[34m"
 echo "Data filtering running..."
 echo -en "\033[0m"
 # nice -n 10 sh Data_Filtering.sh $PXD > $DIR/logs/$PXD/${PXD}_df_log.txt
-nice -n 20 sh $SCRIPTS/Data_Filtering.sh $PXD |& tee $DIR/logs/$PXD/${PXD}_df_log.txt
+sh $SCRIPTS/Data_Filtering.sh $PXD |& tee $DIR/logs/$PXD/${PXD}_df_log.txt
 echo
 
 

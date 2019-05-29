@@ -120,14 +120,14 @@ if [ "$ANALYSIS" -eq 3 ]; then
 fi
 
 
-if [ "$ANALYSIS" -eq "local" ]; then
+if [ "$ANALYSIS" = "local" ]; then
   echo
   echo "Running RetroMiner locally"
   echo
   echo "Starting SearchGUI for X!Tandem and Comet..."
   echo
-  cd $DIR/scripts/src ;
-  sh SearchGUI_module_1.sh $PXD $INPUT_FILE $PARAMETERS $EXPERIMENT $SAMPLE $ANALYSIS $REPLICATE $OUTPUT_FOLDER $THREADS
+  cd $DIR/scripts/src
+  sh SearchGUI_module_local.sh $PXD $INPUT_FILE $PARAMETERS $EXPERIMENT $SAMPLE $ANALYSIS $REPLICATE $OUTPUT_FOLDER $THREADS
   echo
   echo
   echo

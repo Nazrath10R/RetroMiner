@@ -42,7 +42,7 @@ nice -n 20 java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI
 }
 
 echo
-echo "X!Tandem and Comet successful"
+echo "X!Tandem and Comet finished"
 echo
 
 #                  ~ end of script ~                  #

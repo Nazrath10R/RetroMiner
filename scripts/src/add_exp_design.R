@@ -6,7 +6,7 @@
 #                                                                  #
 ####################################################################
 
-retrominer_path <- list.files(path = "../", pattern = "retrominer_path.txt", 
+retrominer_path <- list.files(path = "..", pattern = "retrominer_path.txt", 
                    recursive=TRUE, full.names=TRUE, 
                    include.dirs=TRUE)
 

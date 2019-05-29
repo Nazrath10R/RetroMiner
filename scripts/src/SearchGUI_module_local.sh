@@ -1,11 +1,11 @@
 #!/bin/bash
 
 #############################################################
-####               SEARCHGUI MODULE 2                    ####
+####               SEARCHGUI MODULE 1                    ####
 #############################################################
 
 #                                                            #
-#                sm11: MS Amanda and MS-GF+                  #
+#              Frontend 5: X!Tandem and Comet                #
 #                                                            #
 
 #------------------------------------------------------------#
@@ -27,21 +27,23 @@ THREADS=$9
 
 #------------------------------------------------------------#
 
-cd $DIR/pride_reanalysis/SearchGUI.5/
+echo
+echo "Using X!Tandem and Comet locally"
+echo
+echo
+cd $DIR/SearchGUI.5/
+echo
 
-echo
-echo "Using sm11 for MSGF+ and MS_Amanda"
-echo
-echo
-cd $DIR/pride_reanalysis/SearchGUI.5/
-echo
+# module load java/1.8.0_121-oracle
 
 {
-java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER -id_params $PARAMETERS -msgf 1 -threads $THREADS
-java -Xmx100G -cp SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER -id_params $PARAMETERS -ms_amanda 1 -threads $THREADS
+java -Xmx100G -cp $DIR/SearchGUI.5/SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.SearchCLI -spectrum_files $INPUT_FILE -output_folder $OUTPUT_FOLDER -id_params $PARAMETERS -xtandem 1 -comet 1 -threads "$THREADS" -output_option 3
+# &
 }
+
 echo
-echo "MSGF+ and MS_Amanda successful"
+echo "X!Tandem and Comet finished"
 echo
 
 #                  ~ end of script ~                  #
+

@@ -10,7 +10,7 @@ suppressMessages(library("argparser"))    # Argument passing
 
 ##########################################################################
 
-retrominer_path <- list.files(path = ".", pattern = "retrominer_path.txt", 
+retrominer_path <- list.files(path = "..", pattern = "retrominer_path.txt", 
                    recursive=TRUE, full.names=TRUE, 
                    include.dirs=TRUE)
 
@@ -44,9 +44,9 @@ if (! PXD %in% table$Accession_number) {
 }
 
 ## working directory
-dir <- paste("/data/SBCS-BessantLab/naz/pride_reanalysis/parameters/", paste(PXD, "/", sep=""), sep= "")
-dir.create(dir)
-setwd(dir)
+working_dir <- paste(dir, "/parameters/", paste(PXD, "/", sep=""), sep= "")
+dir.create(working_dir)
+setwd(working_dir)
 
 ##########################################################################
 
@@ -55,7 +55,7 @@ pxd_subset <- table[table$Accession_number==PXD,]
 
 samples <- unique(pxd_subset$Sample) # number of samples
 
-write(as.character(length(samples)), paste(paste("/data/SBCS-BessantLab/naz/pride_reanalysis/inputs/", PXD, sep=""), "/samples.txt", sep=""))
+write(as.character(length(samples)), paste(paste(dir, "/inputs/", PXD, sep=""), "/samples.txt", sep=""))
 
 ## file name parser
 for(x in 1:length(samples)) {
