@@ -140,4 +140,14 @@ else
 fi
 
 
+if [[ ( $2 == "--raw") ||  $2 == "-r" ]] 
+then
+	echo
+	echo "#---------------------------------------------#"
+	echo "Convert raw files to mgf files before analysis!"
+	echo "#---------------------------------------------#"
+	echo
+fi
+
+
 #                  ~ end of script ~                  #

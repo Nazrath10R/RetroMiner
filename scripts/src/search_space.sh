@@ -27,6 +27,7 @@ then
  if [[ ( $new_fasta == "y") ||  $new_fasta == "Y" ]] 
  	then
 		echo
+		echo "combining fasta files"
 		new_fasta=`find . -type f \( -iname "*.fasta" ! -iname "human_proteome.fasta" \)`
 		# echo $new_fasta
 
@@ -40,14 +41,16 @@ then
 		
 		# reversed sequence generation through SG
 		java -cp ../SearchGUI.5/SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.FastaCLI \
-		-in human_variants_proteome.fasta -decoy
-
+		-in human_variants_proteome.fasta -decoy 
+		
 		# check if database was generated
 		if ls human_variants_proteome.fasta 1> /dev/null 2>&1; then
 
-			echo "#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-			echo "search database generated: human_variants_proteome.fasta"
-			echo "#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+			echo
+			echo "#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+			echo "search database generated: human_variants_proteome_concatenated_target_decoy.fasta"
+			echo "#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+			echo
 			sleep 3
 
 		else
@@ -61,7 +64,28 @@ then
 ## no sequences to be added
 elif [[ ( $new_sequences == "n") ||  $new_sequences == "N" ]]
 	then
+	
+	cd human_proteome
+
 	echo "no new sequences"
+
+		mv human_proteome.fasta human_variants_proteome.fasta
+
+		# reversed sequence generation through SG
+		java -cp ../SearchGUI.5/SearchGUI-3.2.5.jar eu.isas.searchgui.cmd.FastaCLI \
+		-in human_variants_proteome.fasta -decoy 
+		# -decoy_suffix "target-decoy.fasta"
+
+		# check if database was generated
+		if ls human_variants_proteome.fasta 1> /dev/null 2>&1; then
+			echo
+			echo "#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+			echo "search database generated: human_variants_proteome_concatenated_target_decoy.fasta"
+			echo "#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+			echo
+			sleep 3
+fi 
+
 else 
 	echo "input not identified"
 	echo
