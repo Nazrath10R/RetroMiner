@@ -26,6 +26,41 @@ ARCHIVE=$DIR/z_archive
 PXD=$1
 # --pride or -p for pride.mgf files
 
+
+#------------------------------------------------------------#
+
+#### Display Usage ####
+
+display_usage() {
+  echo  
+  echo -e "Run:\nsh data_setup.sh [PXD00xxxx]"
+  echo
+  echo -e "PXD00xxxx = PRIDE Dataset identifier"
+  echo
+  echo -e "optional arguments"
+  echo
+  echo -e "--pride or -p for curated pride.mgf files\n   --raw   or -r for RAW files"
+  echo
+} 
+ 
+# check whether user had supplied -h or --help . If yes display usage 
+if [[ ( $1 == "--help") ||  $1 == "-h" ]] 
+then 
+  display_usage
+  exit 0
+fi 
+
+# if less than three arguments supplied, display usage 
+if [[ ( $1 != "--help") &&  $1 != "-h" && ( $1 != "--interactive") && 
+  $1 != "-i" && $# -le 2 ]] 
+then 
+  display_usage
+  exit 1
+fi 
+
+#------------------------------------------------------------#
+
+
 #------------------------------------------------------------#
 #                                                            #
 #                 Data and Parameters Set Up                 # 

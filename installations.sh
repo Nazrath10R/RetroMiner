@@ -12,7 +12,7 @@ mkdir human_proteome
 mkdir inputs
 mkdir logs
 mkdir outputs
-mkdir parameters
+# mkdir parameters
 mkdir reports
 mkdir results
 mkdir sizes
@@ -51,7 +51,7 @@ rm PeptideShaker-1.14.6.zip
 
 echo
 echo "moved config file"
-# cp .peptideshaker $HOME/
+cp .peptideshaker $HOME/
 
 echo
 echo -en "\033[34m"
@@ -60,7 +60,7 @@ echo -en "\033[0m"
 echo
 sleep 3
 wget "https://www.uniprot.org/uniprot/?include=false&format=fasta&force=true&query=proteome:UP000005640" > human_proteome/human_proteome.fasta
-rm index.html?include=false&format=fasta&force=true&query=proteome:UP000005640
+rm 'index.html?include=false&format=fasta&force=true&query=proteome:UP000005640'
 
 echo
 echo -en "\033[34m"
